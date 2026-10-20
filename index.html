@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RTF to PDF — Welcome</title>
+  <style>
+    /* ===== Tokens ===== */
+    :root {
+      --background: #FFFFFF;
+      --bg-body: #F9FAFB;
+      --foreground: #09090B;
+      --muted: #F4F4F5;
+      --muted-foreground: #71717A;
+      --border: #E4E4E7;
+      --primary: #DC2626;
+      --primary-hover: #B91C1C;
+      --radius: 0.75rem;
+      --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+      --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #18181B;
+        --bg-body: #09090B;
+        --foreground: #FAFAFA;
+        --muted: #27272A;
+        --muted-foreground: #A1A1AA;
+        --border: #3F3F46;
+        --primary: #DC2626;
+        --primary-hover: #B91C1C;
+        --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.3);
+        --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.4);
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    /* Fallback: If JS is disabled, force elements to be visible */
+    .no-js .fade-in {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    /* ===== Scrollbar Styling ===== */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D1D5DB;
+      border-radius: 5px;
+      border: 2px solid var(--bg-body);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #9CA3AF;
+    }
+    @media (prefers-color-scheme: dark) {
+      ::-webkit-scrollbar-thumb {
+        background: #4B5563;
+        border: 2px solid var(--bg-body);
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #6B7280;
+      }
+    }
+
+    body {
+      margin: 0;
+      padding: 32px 20px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--foreground);
+      background: var(--bg-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 840px;
+      margin: 0 auto;
+    }
+
+    /* ===== Header ===== */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .header img {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+    }
+    .header span {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    /* ===== Mode Tabs (New Switcher) ===== */
+    .mode-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+    .mode-tabs button {
+      background: var(--muted);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted-foreground);
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .mode-tabs button:hover {
+      background: var(--border);
+    }
+    /* Active state for the tab */
+    body[data-mode="pin"] .mode-tabs button[data-switch="pin"],
+    body[data-mode="usage"] .mode-tabs button[data-switch="usage"] {
+      background: var(--background);
+      color: var(--foreground);
+      border-color: var(--border);
+      box-shadow: var(--shadow-sm);
+      font-weight: 600;
+    }
+
+    /* ===== Mode switching logic ===== */
+    .mode { display: none; }
+    body[data-mode="pin"]   .mode-pin   { display: block; }
+    body[data-mode="usage"] .mode-usage { display: block; }
+
+    /* ===== Typography ===== */
+    h1 {
+      margin: 0 0 12px;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      text-align: center;
+    }
+
+    .lead {
+      margin: 0 0 24px;
+      font-size: 18px;
+      color: var(--muted-foreground);
+      text-align: center;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .lead strong { color: var(--foreground); font-weight: 600; }
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    p { margin: 0 0 12px; }
+
+    /* ===== Screenshots ===== */
+    figure.shot {
+      margin: 0 0 24px;
+      text-align: center;
+    }
+
+    figure.shot img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+      background-color: var(--muted);
+    }
+
+    figure.shot figcaption {
+      margin-top: 12px;
+      font-size: 15px;
+      color: var(--muted-foreground);
+      text-align: center;
+    }
+
+    /* ===== Steps ===== */
+    .steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding: 32px;
+      margin-bottom: 16px;
+      background: var(--background);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .step:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .step-text h2 { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; font-size: 20px; }
+
+    .step-text .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .step figure {
+      margin: 0;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step figure img {
+      display: block;
+      width: 100%;
+      max-width: 360px;
+      height: auto;
+      margin: 0 auto;
+      border-radius: calc(var(--radius) - 4px);
+      border: 1px solid var(--border);
+      background-color: var(--muted);
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.05);
+    }
+
+    @media (min-width: 768px) {
+      .step { grid-template-columns: 1fr 340px; align-items: center; gap: 32px; }
+    }
+
+    /* ===== Switch link (Bottom) ===== */
+    .switch {
+      margin: 32px 0 0;
+      text-align: center;
+      font-size: 15px;
+      color: var(--muted-foreground);
+    }
+
+    .switch a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .switch a:hover { text-decoration: underline; }
+
+    /* ===== Animations ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body data-mode="pin">
+  <main class="page">
+    
+    <header class="header fade-in">
+      <img src="images/icon-128.png" alt="RTF to PDF Logo" onerror="this.style.display='none'">
+      <span>RTF to PDF</span>
+    </header>
+
+    <!-- Mode Tabs (Always visible at the top) -->
+    <div class="mode-tabs fade-in">
+      <button type="button" data-switch="pin">How to pin</button>
+      <button type="button" data-switch="usage">How to use</button>
+    </div>
+
+    <!-- ===================== MODE 1: NOT PINNED ===================== -->
+    <section class="mode mode-pin" aria-labelledby="pin-title">
+      <h1 id="pin-title" class="fade-in">🎉 RTF to PDF is installed!</h1>
+      <p class="lead fade-in">
+        Click the <strong>puzzle piece (1)</strong> in the top-right corner of your browser.
+        Then click the <strong>little pin (2)</strong> next to the extension to keep it on your toolbar.
+      </p>
+
+      <figure class="shot fade-in">
+        <img src="images/pin-steps.png"
+             alt="Chrome toolbar: the puzzle piece icon (1) opens the Extensions menu, the pin (2) keeps RTF to PDF on the toolbar">
+      </figure>
+
+      <p class="lead fade-in" style="margin-top: 24px;">
+        Once pinned, click the <strong>RTF to PDF icon (3)</strong> on any page to start converting.
+      </p>
+
+      <figure class="shot fade-in">
+        <img src="images/open-extension.png"
+             alt="RTF to PDF icon pinned to the Chrome toolbar">
+      </figure>
+
+      <p class="switch fade-in">
+        Already pinned? <a href="#usage" data-switch="usage">Skip to Step 2</a>
+      </p>
+    </section>
+
+    <!-- ===================== MODE 2: PINNED / USAGE ===================== -->
+    <section class="mode mode-usage" aria-labelledby="usage-title">
+      <h1 id="usage-title" class="fade-in">RTF to PDF is ready</h1>
+      <p class="lead fade-in">
+        It is already on your toolbar. Here is how to convert your first file — everything happens
+        <strong>right in your browser</strong>, no uploads, no accounts.
+      </p>
+
+      <figure class="shot fade-in">
+        <img src="images/toolbar-click.png"
+             alt="Click the RTF to PDF icon on the Chrome toolbar">
+        <figcaption>Click the RTF to PDF icon on any page to open the converter.</figcaption>
+      </figure>
+
+      <ol class="steps">
+        <li class="step fade-in">
+          <div class="step-text">
+            <h2><span class="num">1</span>Add your .rtf files</h2>
+            <p>Drag &amp; drop one or more <strong>.rtf</strong> files into the dashed area — or click
+              <strong>Choose Files</strong>. You can queue several files at once.</p>
+          </div>
+          <figure>
+            <img src="images/popup-dropzone.png"
+                 alt="RTF to PDF popup with the drop zone">
+          </figure>
+        </li>
+
+        <li class="step fade-in">
+          <div class="step-text">
+            <h2><span class="num">2</span>Convert</h2>
+            <p>Press <strong>Convert</strong>. Each file shows its own progress; the popup stays
+              responsive, so you can cancel at any time.</p>
+          </div>
+          <figure>
+            <img src="images/popup-converting.png"
+                 alt="RTF to PDF popup while a file is converting">
+          </figure>
+        </li>
+
+        <li class="step fade-in">
+          <div class="step-text">
+            <h2><span class="num">3</span>Download the PDF</h2>
+            <p>When all files are <strong>Done</strong>, click <strong>Download PDF</strong> for a
+              single file or <strong>Download All as ZIP</strong> for several. Done!</p>
+          </div>
+          <figure>
+            <img src="images/popup-done.png"
+                 alt="RTF to PDF popup with the Download PDF button">
+          </figure>
+        </li>
+      </ol>
+
+      <p class="switch fade-in">
+        Can't find the icon on your toolbar? <a href="#pin" data-switch="pin">Show me how to pin it</a>
+      </p>
+    </section>
+
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      // Remove no-js class since JS is running
+      document.documentElement.classList.remove("no-js");
+
+      // ==========================================
+      // 1. CONFIGURATION
+      // ==========================================
+      // IMPORTANT: Replace this with your actual Chrome Web Store ID once published.
+      // If you don't have it yet, the page will fall back to reading URL parameters.
+      var STORE_EXTENSION_ID = "YOUR_EXTENSION_ID_HERE"; 
+      var POLL_INTERVAL_MS = 1500;
+
+      // ==========================================
+      // 2. FADE-IN ANIMATIONS (Memory Leak Fixed)
+      // ==========================================
+      // Created ONCE globally, reused across mode switches.
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0,
+        rootMargin: "0px 0px 150px 0px" 
+      });
+
+      function initAnimations() {
+        var activeMode = document.querySelector('body[data-mode="' + document.body.dataset.mode + '"]');
+        var tabs = document.querySelector(".mode-tabs");
+        
+        if (activeMode) {
+          var elements = activeMode.querySelectorAll(".fade-in");
+          elements.forEach(function(el) {
+            el.classList.remove("visible");
+            observer.observe(el);
+          });
+        }
+        if (tabs) {
+           tabs.classList.remove("visible");
+           observer.observe(tabs);
+        }
+      }
+
+      // ==========================================
+      // 3. MODE SWITCHING & AUTO-DETECTION (From Manual)
+      // ==========================================
+      var params = new URLSearchParams(location.search);
+      var extensionId = /^[a-p]{32}$/.test(params.get("id") || "") ? params.get("id") : STORE_EXTENSION_ID;
+      
+      var manual = false; // True if user clicked a tab
+      var reachable = true; // True if extension responds to messages
+      var pollTimer = 0;
+
+      function setMode(mode) {
+        if (mode === "pin" || mode === "usage") {
+          document.body.dataset.mode = mode;
+          initAnimations();
+        }
+      }
+
+      function stopPolling() { 
+        clearInterval(pollTimer); 
+        pollTimer = 0; 
+      }
+
+      function checkPinState() {
+        if (manual || !reachable) return;
+        var runtime = window.chrome && chrome.runtime;
+        // chrome.runtime exists here only thanks to externally_connectable.
+        if (!runtime || typeof runtime.sendMessage !== "function") { 
+          reachable = false; 
+          stopPolling(); 
+          return; 
+        }
+        
+        runtime.sendMessage(extensionId, { type: "getPinState" }, function (reply) {
+          if (runtime.lastError) { // Not installed, disabled or old version
+            reachable = false; 
+            stopPolling(); 
+            return; 
+          }
+          if (!manual && reply && typeof reply.isOnToolbar === "boolean") {
+            setMode(reply.isOnToolbar ? "usage" : "pin");
+          }
+        });
+      }
+
+      // --- INITIAL STATE ---
+      // 1. Check hash (#pin or #usage)
+      var hash = location.hash.slice(1);
+      if (hash === "pin" || hash === "usage") {
+        manual = true; 
+        setMode(hash);
+      } else {
+        // 2. Check ?pinned=1 or ?pinned=0 from URL
+        setMode(params.get("pinned") === "1" ? "usage" : "pin");
+        
+        // 3. Start polling
+        checkPinState();
+        pollTimer = setInterval(function () {
+          if (document.visibilityState === "visible") checkPinState();
+        }, POLL_INTERVAL_MS);
+      }
+
+      // Re-check when user comes back to the tab
+      document.addEventListener("visibilitychange", function () {
+        if (document.visibilityState === "visible") checkPinState();
+      });
+
+      // Manual clicks always win
+      document.addEventListener("click", function (e) {
+        var link = e.target.closest("[data-switch]");
+        if (!link) return;
+        e.preventDefault();
+        manual = true; 
+        stopPolling();
+        setMode(link.dataset.switch);
+        history.replaceState(null, "", "#" + link.dataset.switch);
+      });
+
+      // Start animations on load
+      initAnimations();
+    })();
+  </script>
+</body>
+</html>

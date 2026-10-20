@@ -1,0 +1,8 @@
+# Dependencies & build
+node_modules/
+dist/
+*.log
+
+# Editor / agent tools
+.opencode/
+.serena/
