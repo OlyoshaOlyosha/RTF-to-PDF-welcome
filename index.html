@@ -42,12 +42,6 @@
       scrollbar-gutter: stable;
     }
 
-    /* Fallback: If JS is disabled, force elements to be visible */
-    .no-js .fade-in {
-      opacity: 1 !important;
-      transform: none !important;
-    }
-
     /* ===== Scrollbar Styling ===== */
     ::-webkit-scrollbar {
       width: 10px;
@@ -183,6 +177,8 @@
       display: block;
       width: 100%;
       max-width: 100%;
+      max-height: 440px;
+      object-fit: contain;
       height: auto;
       margin: 0 auto;
       border-radius: var(--radius);
@@ -251,6 +247,8 @@
       display: block;
       width: 100%;
       max-width: 360px;
+      max-height: 300px;
+      object-fit: contain;
       height: auto;
       margin: 0 auto;
       border-radius: calc(var(--radius) - 4px);
@@ -279,18 +277,6 @@
 
     .switch a:hover { text-decoration: underline; }
 
-    /* ===== Animations ===== */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: opacity, transform;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
   </style>
 </head>
 <body data-mode="pin">
@@ -315,21 +301,21 @@
         Then click the <strong>little pin (2)</strong> next to the extension to keep it on your toolbar.
       </p>
 
-      <figure class="shot fade-in">
+      <figure class="shot">
         <img src="images/pin-steps.png"
              alt="Chrome toolbar: the puzzle piece icon (1) opens the Extensions menu, the pin (2) keeps RTF to PDF on the toolbar">
       </figure>
 
-      <p class="lead fade-in" style="margin-top: 24px;">
+      <p class="lead" style="margin-top: 24px;">
         Once pinned, click the <strong>RTF to PDF icon (3)</strong> on any page to start converting.
       </p>
 
-      <figure class="shot fade-in">
+      <figure class="shot">
         <img src="images/open-extension.png"
              alt="RTF to PDF icon pinned to the Chrome toolbar">
       </figure>
 
-      <p class="switch fade-in">
+      <p class="switch">
         Already pinned? <a href="#usage" data-switch="usage">Skip to Step 2</a>
       </p>
     </section>
@@ -342,14 +328,14 @@
         <strong>right in your browser</strong>, no uploads, no accounts.
       </p>
 
-      <figure class="shot fade-in">
+      <figure class="shot">
         <img src="images/toolbar-click.png"
              alt="Click the RTF to PDF icon on the Chrome toolbar">
         <figcaption>Click the RTF to PDF icon on any page to open the converter.</figcaption>
       </figure>
 
       <ol class="steps">
-        <li class="step fade-in">
+        <li class="step">
           <div class="step-text">
             <h2><span class="num">1</span>Add your .rtf files</h2>
             <p>Drag &amp; drop one or more <strong>.rtf</strong> files into the dashed area — or click
@@ -361,7 +347,7 @@
           </figure>
         </li>
 
-        <li class="step fade-in">
+        <li class="step">
           <div class="step-text">
             <h2><span class="num">2</span>Convert</h2>
             <p>Press <strong>Convert</strong>. Each file shows its own progress; the popup stays
@@ -373,7 +359,7 @@
           </figure>
         </li>
 
-        <li class="step fade-in">
+        <li class="step">
           <div class="step-text">
             <h2><span class="num">3</span>Download the PDF</h2>
             <p>When all files are <strong>Done</strong>, click <strong>Download PDF</strong> for a
@@ -386,7 +372,7 @@
         </li>
       </ol>
 
-      <p class="switch fade-in">
+      <p class="switch">
         Can't find the icon on your toolbar? <a href="#pin" data-switch="pin">Show me how to pin it</a>
       </p>
     </section>
@@ -409,40 +395,7 @@
       var POLL_INTERVAL_MS = 1500;
 
       // ==========================================
-      // 2. FADE-IN ANIMATIONS (Memory Leak Fixed)
-      // ==========================================
-      // Created ONCE globally, reused across mode switches.
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0,
-        rootMargin: "0px 0px 150px 0px" 
-      });
-
-      function initAnimations() {
-        var activeMode = document.querySelector('body[data-mode="' + document.body.dataset.mode + '"]');
-        var tabs = document.querySelector(".mode-tabs");
-        
-        if (activeMode) {
-          var elements = activeMode.querySelectorAll(".fade-in");
-          elements.forEach(function(el) {
-            el.classList.remove("visible");
-            observer.observe(el);
-          });
-        }
-        if (tabs) {
-           tabs.classList.remove("visible");
-           observer.observe(tabs);
-        }
-      }
-
-      // ==========================================
-      // 3. MODE SWITCHING & AUTO-DETECTION (From Manual)
+      // 2. MODE SWITCHING & AUTO-DETECTION (From Manual)
       // ==========================================
       var params = new URLSearchParams(location.search);
       var extensionId = /^[a-p]{32}$/.test(params.get("id") || "") ? params.get("id") : STORE_EXTENSION_ID;
@@ -454,7 +407,6 @@
       function setMode(mode) {
         if (mode === "pin" || mode === "usage") {
           document.body.dataset.mode = mode;
-          initAnimations();
         }
       }
 
@@ -517,9 +469,6 @@
         setMode(link.dataset.switch);
         history.replaceState(null, "", "#" + link.dataset.switch);
       });
-
-      // Start animations on load
-      initAnimations();
     })();
   </script>
 </body>
