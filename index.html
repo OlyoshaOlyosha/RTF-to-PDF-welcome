@@ -476,7 +476,23 @@
         stopPolling();
         setMode(link.dataset.switch);
         history.replaceState(null, "", "#" + link.dataset.switch);
+
+        if (typeof gtag === 'function') {
+          var isTopTab = link.closest('.mode-tabs') !== null;
+          gtag('event', 'switch_instruction_tab', {
+            'target_tab': link.dataset.switch,
+            'click_location': isTopTab ? 'top_tab' : 'bottom_link'
+          });
+        }
       });
+
+      setTimeout(function() {
+        if (typeof gtag === 'function') {
+          gtag('event', 'page_view_mode', {
+            'initial_mode': document.body.dataset.mode
+          });
+        }
+      }, 1000);
     })();
   </script>
 </body>
