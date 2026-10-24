@@ -59,6 +59,11 @@
 
     * { box-sizing: border-box; }
     html { scrollbar-gutter: stable; }
+    ::selection { background: rgb(220 38 38 / 0.25); }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--muted) 55%, var(--bg)); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
     ::selection { background: rgb(220 38 38 / 0.22); }
     body {
       margin: 0;
@@ -126,7 +131,7 @@
 <body>
   <header class="page-head">
     <a class="home-link" href="/">
-      <img src="images/icon-128.png" alt="" width="26" height="26">
+      <img src="images/icon-128.png" alt="" width="28" height="28">
       <span>RTF to PDF</span>
     </a>
     <button class="theme-toggle" type="button" aria-label="Switch to dark theme">
