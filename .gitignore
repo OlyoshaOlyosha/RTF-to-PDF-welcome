@@ -6,6 +6,7 @@ dist/
 # Editor / agent tools
 .opencode/
 .serena/
+.taste-skill/
 
 # AI project docs (local-only, never published)
 AGENTS.md
@@ -13,3 +14,6 @@ CLAUDE.md
 tech_instructions.md
 user_instructions.md
 user_commands.md
+PRODUCT.md
+DESIGN.md
+.impeccable/
