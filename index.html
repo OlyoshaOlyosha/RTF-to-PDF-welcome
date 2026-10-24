@@ -649,6 +649,48 @@
         if (typeof gtag === "function") gtag("event", "install_click", { location: el.dataset.install });
       });
 
+      // --- Navigation: in-page anchors, policy links, contact ---
+      document.addEventListener("click", function (e) {
+        var a = e.target.closest("a[href]");
+        if (!a || a.dataset.install || a.classList.contains("skip-link") || typeof gtag !== "function") return;
+        var href = a.getAttribute("href") || "";
+        if (href.charAt(0) === "#") {
+          gtag("event", "navigate", { target: href.slice(1) || "top", source: a.closest(".footer") ? "footer" : "topbar" });
+        } else if (href.indexOf("privacy.html") === 0) {
+          gtag("event", "navigate", { target: "policy", source: a.closest(".privacy-card") ? "privacy_card" : "footer" });
+        } else if (href.indexOf("mailto:") === 0) {
+          gtag("event", "contact_click");
+        }
+      });
+
+      // --- FAQ accordion interest ---
+      document.querySelectorAll(".faq-list details").forEach(function (d) {
+        d.addEventListener("toggle", function () {
+          if (d.open && typeof gtag === "function") {
+            gtag("event", "faq_open", { question: (d.querySelector("summary").textContent || "").trim().slice(0, 80) });
+          }
+        });
+      });
+
+      // --- Scroll depth: one event per threshold per pageview ---
+      var depthSent = {};
+      var depthTicking = false;
+      var checkDepth = function () {
+        depthTicking = false;
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        if (max <= 0) return;
+        var pct = Math.round((window.scrollY / max) * 100);
+        [25, 50, 75, 100].forEach(function (m) {
+          if (pct >= m && !depthSent[m]) {
+            depthSent[m] = true;
+            if (typeof gtag === "function") gtag("event", "scroll_depth", { percent: m });
+          }
+        });
+      };
+      window.addEventListener("scroll", function () {
+        if (!depthTicking) { requestAnimationFrame(checkDepth); depthTicking = true; }
+      }, { passive: true });
+
       // --- Section entrances ---
       // Above the fold: reveal on load, so the first paint is never gated.
       // Below: one-shot entrances as each section scrolls into view, with a

@@ -425,6 +425,7 @@
       var manual = false; // True if user clicked a tab
       var reachable = true; // True if extension responds to messages
       var pollTimer = 0;
+      var autoPinSent = false; // auto_pin_detected fires once per visit
 
       function setMode(mode) {
         if (mode === "pin" || mode === "usage") {
@@ -454,6 +455,12 @@
             return; 
           }
           if (!manual && reply && typeof reply.isOnToolbar === "boolean") {
+            if (reply.isOnToolbar && document.body.dataset.mode === "pin" && !autoPinSent) {
+              autoPinSent = true;
+              if (typeof gtag === 'function') {
+                gtag('event', 'auto_pin_detected');
+              }
+            }
             setMode(reply.isOnToolbar ? "usage" : "pin");
           }
         });
