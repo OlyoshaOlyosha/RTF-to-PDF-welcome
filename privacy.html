@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    // Theme before first paint: stored choice wins, else system preference.
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("rtf2pdf-theme"); } catch (e) {}
+      if (t === "light" || t === "dark") {
+        document.documentElement.dataset.theme = t;
+      }
+      document.documentElement.classList.remove("no-js");
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy | rtf2pdf.app</title>
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://rtf2pdf.app/privacy.html">
+  <link rel="icon" type="image/png" href="images/icon-128.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Besley:opsz,wght@16..800,800&family=Libre+Franklin:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK16L10K7N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FK16L10K7N');
+  </script>
+
+  <style>
+    :root {
+      --bg: #F1F1EE;
+      --surface: #FAFAF7;
+      --ink: #1D1C1A;
+      --muted: #6D6A64;
+      --accent: #DC2626;
+      --font-display: "Archivo Black", "Libre Franklin", sans-serif;
+      --font-text: "Libre Franklin", -apple-system, "Segoe UI", Roboto, sans-serif;
+      --frame: clamp(16px, 2.5vw, 40px);
+    }
+    [data-theme="dark"] {
+      --bg: #131316;
+      --surface: #1D1F23;
+      --ink: #F1F2F4;
+      --muted: #9BA1A9;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]):not([data-theme="dark"]) {
+        --bg: #131316;
+        --surface: #1D1F23;
+        --ink: #F1F1EE;
+        --muted: #9BA1A9;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scrollbar-gutter: stable; }
+    ::selection { background: rgb(220 38 38 / 0.22); }
+    body {
+      margin: 0;
+      font-family: var(--font-text);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+    .home-link {
+      position: fixed; top: 16px; left: 16px; z-index: 10;
+      font-family: var(--font-display); font-weight: 400; letter-spacing: -0.02em;
+      font-size: 1.125rem; color: var(--muted); text-decoration: none;
+    }
+    .home-link:hover { color: var(--ink); }
+
+    .sheet {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: clamp(72px, 12vh, 120px) var(--frame) 96px;
+    }
+    h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.02em; line-height: 1.12; text-wrap: balance; }
+    h1 { font-size: clamp(2rem, 1.4rem + 2.6vw, 3.25rem); margin: 0 0 20px; }
+    h2 { font-size: 1.5rem; margin: 44px 0 12px; }
+    h3 { font-size: 1.125rem; margin: 28px 0 6px; }
+    p { margin: 0 0 14px; }
+    ul { margin: 0 0 14px; padding-left: 22px; }
+    li { margin-bottom: 8px; }
+    strong { font-weight: 600; }
+    a { color: var(--accent); }
+    .updated { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <a class="home-link" href="/">rtf2pdf</a>
+
+  <main class="sheet">
+    <h1>Privacy Policy</h1>
+
+    <p class="updated"><strong>Last Updated:</strong> October 23, 2026</p>
+
+    <p>This Privacy Policy ("Policy") explains the information collection, use, and sharing practices of RTF to PDF ("we," "us," and "our").</p>
+
+    <p>Unless otherwise stated, this Policy describes and governs the information collection, use, and sharing practices of RTF to PDF with respect to your use of our Chrome Extension (the "Services").</p>
+
+    <p>Before you use the Services, please carefully review this Privacy Policy. By using any part of the Services, you understand that your information will be handled as outlined in this Privacy Policy.</p>
+
+    <p><strong>If you do not agree with this Privacy Policy, please do not use our Services.</strong></p>
+
+    <h2>Our Principles</h2>
+
+    <p>RTF to PDF has designed this policy to be consistent with the following principles:</p>
+    <ul>
+      <li><strong>Local Processing First:</strong> Data processing should be simplified as much as possible to enhance security. Your files should never leave your device.</li>
+      <li><strong>Minimal Data Footprint:</strong> We believe that the safest data is the data that is never collected.</li>
+      <li><strong>Transparency:</strong> Privacy practices should be human-readable, easy to find, and meet the reasonable expectations of users.</li>
+    </ul>
+
+    <h2>Information We Collect</h2>
+
+    <h3>Information You Provide Directly to Us</h3>
+    <p>We do not require you to create an online account, make donations, or provide any personal information (such as your name, email address, phone number, or payment information) to use our Services.</p>
+
+    <h3>Information that Is Automatically Collected</h3>
+    <p>We do not automatically collect any device information, IP addresses, location data, browser types, or usage statistics.</p>
+
+    <h3>Cookies and Other Tracking Technologies</h3>
+    <p>We do not use cookies, web server logs, web beacons, tracking pixels, or any other tracking technologies within the Extension.</p>
+
+    <h3>Information from Third Parties</h3>
+    <p>We do not collect, purchase, or receive any information about you from third parties.</p>
+
+    <h2>How We Use Your Information</h2>
+    <p>Because we do not collect any personal information, we do not use, share, or sell your data. All file conversions (RTF to PDF) are processed locally within your browser's memory. Your files are never uploaded to, stored on, or transmitted to our servers.</p>
+
+    <h2>Permissions and Local Storage</h2>
+    <p>To function properly, the Extension requires the following browser permissions:</p>
+    <ul>
+      <li><strong>downloads:</strong> Used solely to save the converted PDF files to your computer.</li>
+      <li><strong>storage &amp; unlimitedStorage:</strong> Used to temporarily store your file queue in your browser's local database (IndexedDB) to prevent data loss if you close the Extension popup. This data remains on your device and is not transmitted to us.</li>
+    </ul>
+
+    <h2>Security Measures</h2>
+    <p>Because all processing happens locally on your device, your files never leave your computer. We do not store or transmit your files. While no method of electronic storage is 100% secure, processing data locally ensures that your files are not exposed to external network risks.</p>
+
+    <h2>Children</h2>
+    <p>The Services are intended for users over the age of 18 and are not directed to children under the age of 13. If we become aware that we have collected personal information from children under the age of 13, we will take reasonable steps to delete it as soon as practicable. (Note: We do not knowingly collect any data from anyone).</p>
+
+    <h2>Data Retention</h2>
+    <p>We do not retain any personal information. Any temporary data (such as your file queue) is stored locally on your device and can be cleared by you at any time.</p>
+
+    <h2>Changes to this Privacy Policy</h2>
+    <p>We will continue to evaluate this Privacy Policy as we update and expand our Services, and we may make changes to the Privacy Policy accordingly. We will post any changes here and revise the date last updated above. We encourage you to check this page periodically for updates to stay informed on how we handle your information. If we make material changes to this Privacy Policy, we will provide you with notice as required by law.</p>
+
+    <h2>Questions About this Privacy Policy</h2>
+    <p>If you have any questions about this Privacy Policy or our privacy practices, you can contact us at: <strong><a href="mailto:saiph.forge@gmail.com">saiph.forge@gmail.com</a></strong>.</p>
+  </main>
+</body>
+</html>
