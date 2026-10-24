@@ -6,3 +6,10 @@ dist/
 # Editor / agent tools
 .opencode/
 .serena/
+
+# AI project docs (local-only, never published)
+AGENTS.md
+CLAUDE.md
+tech_instructions.md
+user_instructions.md
+user_commands.md
