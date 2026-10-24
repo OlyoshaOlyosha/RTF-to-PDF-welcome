@@ -381,7 +381,7 @@
     .footer-legal a { color: var(--ink); }
 
     /* ===== Entrances ===== */
-    .js .reveal { opacity: 0; translate: 0 26px; transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), translate 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
+    .js .reveal { opacity: 0; translate: 0 22px; transition: opacity 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), translate 0.5s cubic-bezier(0.2, 0.7, 0.2, 1); }
     .js .reveal.in { opacity: 1; translate: 0 0; }
     /* A safety net: nothing stays hidden for more than 4 s, whatever happens. */
     .js.reveal-fallback .reveal { opacity: 1; translate: 0 0; }
@@ -700,7 +700,7 @@
       if (!reduceMotion && "IntersectionObserver" in window) {
         document.querySelectorAll("[data-stagger]").forEach(function (group) {
           var items = group.querySelectorAll(".reveal");
-          items.forEach(function (el, i) { el.style.transitionDelay = i * 70 + "ms"; });
+          items.forEach(function (el, i) { el.style.transitionDelay = i * 60 + "ms"; });
         });
         var revealObserver = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
@@ -711,10 +711,13 @@
               // Once the entrance has played, drop the stagger delay so
               // later theme fades run at full speed on every element.
               var d = parseInt(el.style.transitionDelay, 10) || 0;
-              setTimeout(function () { el.style.transitionDelay = "0ms"; }, 800 + d);
+              setTimeout(function () { el.style.transitionDelay = "0ms"; }, 700 + d);
             }
           });
-        }, { rootMargin: "0px 0px -10% 0px", threshold: 0.1 });
+          // Positive bottom margin pre-triggers the entrance ~one fifth of
+          // a screen early, so content is already settling when it scrolls
+          // into view instead of starting to fade as it arrives.
+        }, { rootMargin: "0px 0px 18% 0px", threshold: 0.05 });
         reveals.forEach(function (el) { revealObserver.observe(el); });
         setTimeout(function () { document.documentElement.classList.add("reveal-fallback"); }, 4000);
       } else {

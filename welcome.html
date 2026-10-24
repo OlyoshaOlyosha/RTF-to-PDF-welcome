@@ -83,19 +83,6 @@
       margin: 0 auto;
     }
 
-    /* ===== Home link (top-left corner) ===== */
-    .home-link {
-      position: fixed;
-      top: 16px;
-      left: 16px;
-      z-index: 10;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--muted-foreground);
-      text-decoration: none;
-    }
-    .home-link:hover { color: var(--foreground); }
-
     /* ===== Header ===== */
     .header {
       display: flex;
@@ -272,6 +259,22 @@
       .step { grid-template-columns: 1fr 340px; align-items: center; gap: 32px; }
     }
 
+    /* ===== Quiet home link at the bottom ===== */
+    .welcome-footer {
+      margin: 48px 0 0;
+      text-align: center;
+    }
+    .welcome-footer a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--muted-foreground);
+      text-decoration: none;
+    }
+    .welcome-footer a:hover { color: var(--foreground); }
+    .welcome-footer img { border-radius: 5px; }
+
     /* ===== Switch link (Bottom) ===== */
     .switch {
       margin: 32px 0 0;
@@ -301,14 +304,8 @@
   </script>
 </head>
 <body data-mode="pin">
-    <a class="home-link" href="/">rtf2pdf.app</a>
   <main class="page">
     
-    <header class="header">
-      <img src="images/icon-128.png" alt="RTF to PDF Logo" onerror="this.style.display='none'">
-      <span>RTF to PDF</span>
-    </header>
-
     <!-- Mode Tabs (Always visible at the top) -->
     <div class="mode-tabs">
       <button type="button" data-switch="pin">How to pin</button>
@@ -398,6 +395,11 @@
         Can't find the icon on your toolbar? <a href="#pin" data-switch="pin">Show me how to pin it</a>
       </p>
     </section>
+
+    <!-- Home link, deliberately quiet and out of the way -->
+    <p class="welcome-footer">
+      <a href="/"><img src="images/icon-128.png" alt="" width="18" height="18">rtf2pdf.app</a>
+    </p>
 
   </main>
 
