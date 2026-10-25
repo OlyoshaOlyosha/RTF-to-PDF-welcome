@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RTF to PDF — Welcome</title>
+  <meta name="description" content="Pin RTF to PDF to your Chrome toolbar and convert your first RTF file to PDF — locally in your browser, with no uploads.">
+  <link rel="canonical" href="https://rtf2pdf.app/welcome.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="RTF to PDF — Welcome">
+  <meta property="og:description" content="Pin the extension to your toolbar and convert your first RTF file, right in your browser.">
+  <meta property="og:url" content="https://rtf2pdf.app/welcome.html">
   <link rel="icon" type="image/png" href="images/icon-128.png">
   <style>
     /* ===== Tokens ===== */
@@ -113,6 +119,7 @@
       background: var(--muted);
       border: 1px solid var(--border);
       padding: 8px 16px;
+      min-height: 44px;
       font-size: 14px;
       font-weight: 500;
       color: var(--muted-foreground);
@@ -271,6 +278,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      min-height: 44px;
       font-size: 14px;
       color: var(--muted-foreground);
       text-decoration: none;
@@ -293,6 +301,10 @@
     }
 
     .switch a:hover { text-decoration: underline; }
+    /* Red fails contrast on the near-black body; the soft red passes. */
+    @media (prefers-color-scheme: dark) {
+      .switch a { color: #F87171; }
+    }
 
   </style>
 
@@ -413,15 +425,10 @@
     (function () {
       "use strict";
 
-      // Remove no-js class since JS is running
-      document.documentElement.classList.remove("no-js");
-
       // ==========================================
       // 1. CONFIGURATION
       // ==========================================
-      // IMPORTANT: Replace this with your actual Chrome Web Store ID once published.
-      // If you don't have it yet, the page will fall back to reading URL parameters.
-      var STORE_EXTENSION_ID = "pobhkhkiocaphogjeglealncldfdcall"; 
+      var STORE_EXTENSION_ID = "pobhkhkiocaphogjeglealncldfdcall";
       var POLL_INTERVAL_MS = 1500;
 
       // ==========================================

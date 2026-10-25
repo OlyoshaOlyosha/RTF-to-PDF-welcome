@@ -20,7 +20,7 @@
   <link rel="icon" type="image/png" href="images/icon-128.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Besley:opsz,wght@16..800,800&family=Libre+Franklin:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Libre+Franklin:wght@400;600&display=swap" rel="stylesheet">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK16L10K7N"></script>
@@ -38,6 +38,7 @@
       --ink: #1D1C1A;
       --muted: #6D6A64;
       --accent: #DC2626;
+      --accent-link: #B91C1C;
       --font-display: "Archivo Black", "Libre Franklin", sans-serif;
       --font-text: "Libre Franklin", -apple-system, "Segoe UI", Roboto, sans-serif;
       --frame: clamp(16px, 2.5vw, 40px);
@@ -47,13 +48,15 @@
       --surface: #1D1F23;
       --ink: #F1F2F4;
       --muted: #9BA1A9;
+      --accent-link: #F87171;
     }
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme="light"]):not([data-theme="dark"]) {
         --bg: #131316;
         --surface: #1D1F23;
-        --ink: #F1F1EE;
+        --ink: #F1F2F4;
         --muted: #9BA1A9;
+        --accent-link: #F87171;
       }
     }
 
@@ -64,7 +67,6 @@
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--muted) 55%, var(--bg)); }
     ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
-    ::selection { background: rgb(220 38 38 / 0.22); }
     body {
       margin: 0;
       font-family: var(--font-text);
@@ -124,7 +126,7 @@
     ul { margin: 0 0 14px; padding-left: 22px; }
     li { margin-bottom: 8px; }
     strong { font-weight: 600; }
-    a { color: var(--accent); }
+    a { color: var(--accent-link); }
     .updated { color: var(--muted); }
   </style>
 </head>
