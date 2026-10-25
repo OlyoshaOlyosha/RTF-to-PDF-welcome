@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rtf2pdf.app/sitemap.xml
