@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RTF to PDF — Uninstall survey</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Tell us why you uninstalled RTF to PDF — your answer goes straight to the developer.">
+  <link rel="icon" type="image/png" href="images/icon-128.png">
+  <style>
+    /* ===== Tokens (same system as welcome.html) ===== */
+    :root {
+      --background: #FFFFFF;
+      --bg-body: #F9FAFB;
+      --foreground: #09090B;
+      --muted: #F4F4F5;
+      --muted-foreground: #71717A;
+      --border: #E4E4E7;
+      --primary: #DC2626;
+      --primary-hover: #B91C1C;
+      --primary-soft: rgb(220 38 38 / 0.06);
+      --success: #16A34A;
+      --radius: 0.75rem;
+      --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #18181B;
+        --bg-body: #09090B;
+        --foreground: #FAFAFA;
+        --muted: #27272A;
+        --muted-foreground: #A1A1AA;
+        --border: #3F3F46;
+        --primary: #DC2626;
+        --primary-hover: #F87171;
+        --primary-soft: rgb(220 38 38 / 0.12);
+        --success: #4ADE80;
+        --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.3);
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 32px 20px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--foreground);
+      background: var(--bg-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .header img { width: 32px; height: 32px; border-radius: 6px; }
+    .header span { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      text-align: center;
+    }
+
+    .lead {
+      margin: 0 0 24px;
+      font-size: 17px;
+      color: var(--muted-foreground);
+      text-align: center;
+    }
+
+    fieldset {
+      border: 0;
+      padding: 0;
+      margin: 0 0 24px;
+    }
+    legend {
+      padding: 0;
+      margin: 0 0 12px;
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    /* ===== Radio cards ===== */
+    .choices {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .choice {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      min-height: 48px;
+      padding: 12px 16px;
+      background: var(--background);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+    .choice:hover { border-color: var(--muted-foreground); }
+    .choice input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .choice .dot {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      margin-top: 3px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+    .choice .label { flex: 1; }
+    .choice:has(input:checked) {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+    }
+    .choice:has(input:checked) .dot {
+      border-color: var(--primary);
+      background: var(--primary);
+    }
+    .choice:has(input:focus-visible) {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    .other-input {
+      display: none;
+      margin: -2px 0 0 46px;
+    }
+    .other-input input {
+      width: 100%;
+      min-height: 44px;
+      padding: 10px 12px;
+      font: inherit;
+      font-size: 15px;
+      color: var(--foreground);
+      background: var(--background);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .other-input input:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 1px;
+    }
+
+    /* ===== Saved notice + revealed details ===== */
+    .saved-note {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      margin: -8px 0 24px;
+      padding: 12px 16px;
+      font-size: 15px;
+      color: var(--success);
+      background: var(--background);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .saved-note.visible { display: flex; }
+    .saved-note svg { flex-shrink: 0; }
+
+    .details {
+      display: none;
+    }
+    .details.visible { display: block; }
+    .details-title {
+      margin: 0 0 4px;
+      font-size: 17px;
+      font-weight: 600;
+    }
+    .details-sub {
+      margin: 0 0 20px;
+      font-size: 14px;
+      color: var(--muted-foreground);
+    }
+
+    /* ===== Textarea ===== */
+    .field { margin: 0 0 24px; }
+    .field label {
+      display: block;
+      margin: 0 0 12px;
+      font-size: 17px;
+      font-weight: 600;
+    }
+    .optional {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--muted-foreground);
+    }
+    textarea {
+      width: 100%;
+      min-height: 96px;
+      padding: 12px 14px;
+      font: inherit;
+      font-size: 15px;
+      color: var(--foreground);
+      background: var(--background);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      resize: vertical;
+    }
+    textarea:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 1px;
+    }
+    .counter {
+      display: block;
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--muted-foreground);
+      text-align: right;
+    }
+
+    /* ===== Submit ===== */
+    .submit-btn {
+      display: block;
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 24px;
+      font: inherit;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      background: var(--primary);
+      border: 0;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .submit-btn:hover { background: var(--primary-hover); }
+    .submit-btn:disabled { opacity: 0.6; cursor: default; }
+
+    /* ===== States ===== */
+    .state { display: none; text-align: center; padding: 32px 0; }
+    .state.visible { display: block; }
+    .state .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      margin-bottom: 16px;
+    }
+    .state.success .icon { background: var(--primary-soft); color: var(--primary); }
+    .state.error .icon { background: var(--muted); color: var(--muted-foreground); }
+    .state h2 { margin: 0 0 8px; font-size: 20px; }
+    .state p { margin: 0 0 16px; color: var(--muted-foreground); }
+    .state a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .state a:hover { text-decoration: underline; }
+
+    .form-error {
+      display: none;
+      margin: 0 0 16px;
+      padding: 10px 14px;
+      font-size: 14px;
+      color: var(--primary);
+      background: var(--primary-soft);
+      border: 1px solid var(--primary);
+      border-radius: var(--radius);
+    }
+
+    /* ===== Footer ===== */
+    .reinstall {
+      margin: 32px 0 0;
+      text-align: center;
+      font-size: 15px;
+      color: var(--muted-foreground);
+    }
+    .reinstall a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .reinstall a:hover { text-decoration: underline; }
+    /* Red fails contrast on the near-black body; the soft red passes. */
+    @media (prefers-color-scheme: dark) {
+      .reinstall a { color: #F87171; }
+    }
+
+    .page-footer {
+      margin: 40px 0 0;
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted-foreground);
+    }
+    .page-footer .links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 24px;
+      margin-top: 12px;
+    }
+    .page-footer a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--muted-foreground);
+      text-decoration: none;
+    }
+    .page-footer a:hover { color: var(--foreground); }
+    @media (prefers-color-scheme: dark) {
+      .page-footer a { color: #F87171; }
+    }
+
+    /* Honeypot: real field, invisible to humans */
+    .hp {
+      position: absolute;
+      left: -9999px;
+      opacity: 0;
+    }
+  </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK16L10K7N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-FK16L10K7N');
+  </script>
+</head>
+<body>
+  <main class="page">
+    <div class="header">
+      <img src="images/icon-128.png" alt="" width="32" height="32">
+      <span>RTF to PDF</span>
+    </div>
+
+    <h1>Sorry to see you go</h1>
+    <p class="lead">
+      Your answer helps us understand what to fix. No account, no marketing —
+      the response goes straight to the developer.
+    </p>
+
+    <form id="uninstall-form" novalidate>
+      <p class="form-error" id="form-error" role="alert"></p>
+
+      <fieldset>
+        <legend>What was the primary reason you uninstalled the extension?</legend>
+        <div class="choices" id="reason-choices">
+          <label class="choice">
+            <input type="radio" name="reason" value="I no longer need RTF conversion" required>
+            <span class="dot" aria-hidden="true"></span>
+            <span class="label">I no longer need RTF conversion</span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="reason" value="I found a better tool">
+            <span class="dot" aria-hidden="true"></span>
+            <span class="label">I found a better tool</span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="reason" value="Converted documents didn't look right">
+            <span class="dot" aria-hidden="true"></span>
+            <span class="label">Converted documents didn't look right</span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="reason" value="It was slow or had bugs">
+            <span class="dot" aria-hidden="true"></span>
+            <span class="label">It was slow or had bugs</span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="reason" value="Privacy concerns">
+            <span class="dot" aria-hidden="true"></span>
+            <span class="label">Privacy concerns</span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="reason" value="Other" data-other>
+            <span class="dot" aria-hidden="true"></span>
+            <span class="label">Other</span>
+          </label>
+          <div class="other-input" id="other-wrap">
+            <input type="text" id="other-text" maxlength="300" placeholder="Tell us briefly" aria-label="Other — tell us briefly">
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="saved-note" id="saved-note" role="status">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+        Response saved. You can close this tab — or tell us more below.
+      </div>
+
+      <div class="details" id="details-block">
+        <p class="details-title">A few more questions (all optional)</p>
+        <p class="details-sub">Skip anything you don't feel like answering.</p>
+
+        <fieldset>
+          <legend>Did the extension meet your needs before you uninstalled it?</legend>
+          <div class="choices">
+            <label class="choice">
+              <input type="radio" name="met" value="Yes, but I no longer need it">
+              <span class="dot" aria-hidden="true"></span>
+              <span class="label">Yes, but I no longer need it</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="met" value="Partially — important things were missing">
+              <span class="dot" aria-hidden="true"></span>
+              <span class="label">Partially — important things were missing</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="met" value="No, it didn't work as expected">
+              <span class="dot" aria-hidden="true"></span>
+              <span class="label">No, it didn't work as expected</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>What would change your mind about using it again?</legend>
+          <div class="choices">
+            <label class="choice">
+              <input type="radio" name="return" value="Better conversion accuracy">
+              <span class="dot" aria-hidden="true"></span>
+              <span class="label">Better conversion accuracy</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="return" value="More features">
+              <span class="dot" aria-hidden="true"></span>
+              <span class="label">More features</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="return" value="Simpler interface">
+              <span class="dot" aria-hidden="true"></span>
+              <span class="label">Simpler interface</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="return" value="Nothing, I'm fine with my current solution">
+              <span class="dot" aria-hidden="true"></span>
+              <span class="label">Nothing, I'm fine with my current solution</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="return" value="Other" data-other>
+              <span class="dot" aria-hidden="true"></span>
+              <span class="label">Other</span>
+            </label>
+            <div class="other-input" id="return-other-wrap">
+              <input type="text" id="return-other-text" maxlength="300" placeholder="Tell us briefly" aria-label="Other — tell us briefly">
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="details">Anything else you'd like to share? <span class="optional">(optional)</span></label>
+          <textarea id="details" maxlength="1500"></textarea>
+          <span class="counter" id="details-counter">0 / 1500</span>
+        </div>
+
+        <!-- Honeypot: humans never see or fill this -->
+        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <button type="submit" class="submit-btn" id="submit-btn">Send details</button>
+      </div>
+    </form>
+
+    <div class="state success" id="state-success" role="status">
+      <span class="icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      </span>
+      <h2>Thanks — your answers are in.</h2>
+      <p>Sorry the extension didn't work out. You can close this tab now.</p>
+    </div>
+
+    <div class="state error" id="state-error" role="alert">
+      <span class="icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+      </span>
+      <h2>We couldn't send that</h2>
+      <p>Check your connection and try again — or use the simple form instead.</p>
+      <p><a id="fallback-link" href="#" target="_blank" rel="noopener">Open the simple survey form</a></p>
+    </div>
+
+    <p class="reinstall">
+      Deleted by accident? <a href="https://chromewebstore.google.com/detail/rtf-to-pdf/pobhkhkiocaphogjeglealncldfdcall" target="_blank" rel="noopener">Install RTF to PDF again</a>
+    </p>
+
+    <div class="page-footer">
+      Your answer is optional and anonymous — this page sends only what you click or type here.
+      <div class="links">
+        <a href="/">Home</a>
+        <a href="privacy.html">Privacy policy</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      // ===== CONFIGURATION =====
+      var ENDPOINT = "https://script.google.com/macros/s/AKfycbx9Utv2JP6NJWL4VbsRhkh3_wr3qEw6H9gqxd-nfYJuvltn5Ad70tPXjuf47DSrKuFg/exec";
+      // Plain Google form, used only when the direct send fails.
+      var FALLBACK_URL = "https://docs.google.com/forms/d/e/1FAIpQLScZSBtkLYKPSSKNk6JDf1qk9cESfnUrd6vLzzvNv1NKdBk9sw/viewform";
+
+      var form = document.getElementById("uninstall-form");
+      var reasonChoices = document.getElementById("reason-choices");
+      var otherWrap = document.getElementById("other-wrap");
+      var otherText = document.getElementById("other-text");
+      var savedNote = document.getElementById("saved-note");
+      var detailsBlock = document.getElementById("details-block");
+      var returnOtherWrap = document.getElementById("return-other-wrap");
+      var returnOtherText = document.getElementById("return-other-text");
+      var details = document.getElementById("details");
+      var detailsCounter = document.getElementById("details-counter");
+      var honeypot = form.querySelector(".hp");
+      var submitBtn = document.getElementById("submit-btn");
+      var formError = document.getElementById("form-error");
+      var stateSuccess = document.getElementById("state-success");
+      var stateError = document.getElementById("state-error");
+
+      document.getElementById("fallback-link").href = FALLBACK_URL;
+
+      var detailsShown = false;
+      var lastPostedReason = "";
+      var lastPostedOther = "";
+
+      function selected(name) {
+        var checked = form.querySelector('input[name="' + name + '"]:checked');
+        return checked ? checked.value : "";
+      }
+
+      function showError(message) {
+        formError.textContent = message;
+        formError.style.display = "block";
+      }
+
+      function send(payload) {
+        return fetch(ENDPOINT, { method: "POST", mode: "no-cors", body: new URLSearchParams(payload) });
+      }
+
+      function currentReasonPayload() {
+        var reason = selected("reason");
+        return {
+          survey: "uninstall",
+          reason: reason,
+          other: reason === "Other" ? otherText.value.slice(0, 300) : ""
+        };
+      }
+
+      // One click saves instantly (Key Changer style)
+      reasonChoices.addEventListener("change", function (e) {
+        if (e.target.name !== "reason") return;
+        var isOther = e.target.hasAttribute("data-other");
+        otherWrap.style.display = isOther ? "block" : "none";
+        if (isOther) { otherText.focus(); return; } // save once the text is entered
+        saveReason();
+      });
+
+      // "Other": save on blur/Enter so the typed text is included
+      otherText.addEventListener("blur", saveReason);
+      otherText.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") { e.preventDefault(); otherText.blur(); }
+      });
+
+      function saveReason() {
+        var reason = selected("reason");
+        if (!reason) return;
+        if (reason === "Other" && !otherText.value.trim()) return;
+        var payload = currentReasonPayload();
+        if (payload.reason === lastPostedReason && payload.other === lastPostedOther) return;
+        lastPostedReason = payload.reason;
+        lastPostedOther = payload.other;
+
+        // Bots fill the honeypot — pretend success, send nothing
+        if (honeypot.value) { revealDetails(); return; }
+
+        send(payload)
+          .then(function () {
+            if (typeof gtag === "function") gtag("event", "uninstall_reason");
+            savedNote.classList.add("visible");
+            revealDetails();
+          })
+          .catch(function () {
+            showError("We couldn't save that just now — check your connection and pick again.");
+          });
+      }
+
+      function revealDetails() {
+        if (detailsShown) return;
+        detailsShown = true;
+        detailsBlock.classList.add("visible");
+      }
+
+      form.addEventListener("change", function (e) {
+        if (e.target.name !== "return") return;
+        var isOther = e.target.hasAttribute("data-other");
+        returnOtherWrap.style.display = isOther ? "block" : "none";
+        if (isOther) returnOtherText.focus();
+      });
+
+      details.addEventListener("input", function () {
+        detailsCounter.textContent = details.value.length + " / 1500";
+      });
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        formError.style.display = "none";
+
+        if (!selected("reason")) {
+          showError("Please pick the primary reason first.");
+          return;
+        }
+
+        var payload = currentReasonPayload();
+        payload.met = selected("met");
+        payload.return = selected("return");
+        payload.return_other = payload.return === "Other" ? returnOtherText.value.slice(0, 300) : "";
+        payload.details = details.value.slice(0, 1500);
+
+        submitBtn.disabled = true;
+        // Full row: repeats the reason so this submission is self-contained
+        send(payload)
+          .then(function () {
+            if (typeof gtag === "function") gtag("event", "uninstall_submit");
+            form.style.display = "none";
+            savedNote.classList.remove("visible");
+            stateSuccess.classList.add("visible");
+          })
+          .catch(function () {
+            submitBtn.disabled = false;
+            form.style.display = "none";
+            stateError.classList.add("visible");
+          });
+      });
+
+    })();
+  </script>
+</body>
+</html>
