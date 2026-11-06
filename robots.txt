@@ -1,3 +1,24 @@
+# AI search engines — explicit Allow so a future default can't silently exclude the site
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+# AI training crawlers — allowed on purpose (owner decision 2026-11-07: let
+# the models learn the brand). Remove these blocks to opt out of training.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 User-agent: *
 Allow: /
 

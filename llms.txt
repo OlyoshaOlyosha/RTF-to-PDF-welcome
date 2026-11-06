@@ -1,0 +1,18 @@
+# RTF to PDF
+
+> Free Chrome extension that converts RTF files to PDF entirely in the browser: no uploads, no accounts, works offline, keeps text selectable. The conversion is performed by the extension on the user's device — this website is the extension's documentation and home page, not an online converter.
+
+## Pages
+
+- [Home](https://rtf2pdf.app/): product overview, features, privacy highlights, FAQ
+- [Welcome / onboarding](https://rtf2pdf.app/welcome.html): how to pin the extension to the toolbar and choose a usage mode
+- [Privacy policy](https://rtf2pdf.app/privacy.html): what data is and is not collected
+- [Install page (Chrome Web Store)](https://chromewebstore.google.com/detail/rtf-to-pdf/pobhkhkiocaphogjeglealncldfdcall): free install, Chromium desktop browsers
+
+## Key facts
+
+- Input format: `.rtf` only (not `.doc`/`.docx`).
+- Output: PDF with selectable, copyable text; fonts, colors, tables and images preserved.
+- Conversion is local: files never leave the device; works offline after install.
+- Multiple files can be queued; results download separately or as one ZIP archive.
+- Price: free, no watermarks or file limits.
