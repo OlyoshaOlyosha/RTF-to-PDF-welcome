@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Open an RTF File Without Microsoft Word | RTF to PDF</title>
+  <meta name="description" content="No Microsoft Word? Open RTF files with LibreOffice, Google Docs, Apple TextEdit, Word Online, or on a phone — free options for every system, listed and compared.">
+  <link rel="canonical" href="https://rtf2pdf.app/guides/open-rtf-without-word.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="RTF to PDF">
+  <meta property="og:title" content="How to Open an RTF File Without Microsoft Word">
+  <meta property="og:description" content="Free ways to open RTF files on Windows, Mac, Linux, and phones — no Microsoft Word needed.">
+  <meta property="og:url" content="https://rtf2pdf.app/guides/open-rtf-without-word.html">
+  <meta property="og:image" content="https://rtf2pdf.app/images/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="../images/icon-128.png">
+  <!-- Fonts self-hosted (latin subset), no third-party CDN dependency -->
+  <link rel="preload" href="../fonts/archivo-black-400.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK16L10K7N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    // Owner's own visits: open any page once with ?internal=1 to mark this
+    // browser; GA4's "Internal Traffic" data filter excludes traffic_type=internal.
+    (function () {
+      try {
+        if (/[?&]internal=1/.test(location.search) || localStorage.getItem("rtf2pdf-internal") === "1") {
+          localStorage.setItem("rtf2pdf-internal", "1");
+          gtag('set', { traffic_type: 'internal' });
+        }
+      } catch (e) {}
+    })();
+    gtag('config', 'G-FK16L10K7N');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Open an RTF File Without Microsoft Word",
+    "description": "Free ways to open RTF files on Windows, Mac, Linux, and phones — no Microsoft Word needed.",
+    "datePublished": "2026-11-07",
+    "dateModified": "2026-11-07",
+    "author": { "@type": "Organization", "name": "RTF to PDF", "url": "https://rtf2pdf.app/" },
+    "publisher": { "@type": "Organization", "name": "RTF to PDF", "url": "https://rtf2pdf.app/" },
+    "mainEntityOfPage": "https://rtf2pdf.app/guides/open-rtf-without-word.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Can Notepad open an RTF file?", "acceptedAnswer": { "@type": "Answer", "text": "It can open it, but you will see raw RTF markup — backslash codes mixed with the text — instead of the formatted document. Notepad reads plain text and has no idea what to do with formatting instructions. Use a word processor instead." } },
+      { "@type": "Question", "name": "How do I open an RTF file on Android or iPhone?", "acceptedAnswer": { "@type": "Answer", "text": "Upload it to Google Drive and open it with the Google Docs app, or open it directly in the free Google Docs / LibreOffice viewer apps on either platform. Both render RTF formatting on mobile." } },
+      { "@type": "Question", "name": "Can Chrome open RTF files by itself?", "acceptedAnswer": { "@type": "Answer", "text": "Not natively — a browser tab has no word processor in it. Two browser-friendly options: convert the RTF to PDF with the free RTF to PDF extension and read the PDF in the browser, or upload the file to Google Docs." } },
+      { "@type": "Question", "name": "Is Microsoft Word free online?", "acceptedAnswer": { "@type": "Answer", "text": "Word for the web is free with a Microsoft account at microsoft365.com and opens RTF files, though very complex documents are better handled by the desktop app or LibreOffice." } },
+      { "@type": "Question", "name": "What happened to WordPad?", "acceptedAnswer": { "@type": "Answer", "text": "WordPad, which used RTF as its default format, was removed from Windows 11 by Microsoft in 2023. On Windows 10 and older it is still present; on current Windows, use LibreOffice or Word instead." } }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ===== Self-hosted webfonts (latin) ===== */
+    @font-face {
+      font-family: "Archivo Black";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("../fonts/archivo-black-400.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Libre Franklin";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("../fonts/libre-franklin-400.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Libre Franklin";
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url("../fonts/libre-franklin-600.woff2") format("woff2");
+    }
+
+    /* Tokens, same system as the rest of the site */
+    :root {
+      --bg: #F1F1EE;
+      --surface: #FAFAF7;
+      --ink: #1D1C1A;
+      --muted: #6D6A64;
+      --border: #D9D6CE;
+      --accent: #DC2626;
+      --accent-link: #B91C1C;
+      --font-display: "Archivo Black", "Arial Black", "Libre Franklin", sans-serif;
+      --font-text: "Libre Franklin", -apple-system, "Segoe UI", Roboto, sans-serif;
+      --frame: clamp(16px, 2.5vw, 40px);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #131316;
+        --surface: #1D1F23;
+        --ink: #F1F2F4;
+        --muted: #9BA1A9;
+        --border: #2E3138;
+        --accent-link: #F87171;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scrollbar-gutter: stable; }
+    ::selection { background: rgb(220 38 38 / 0.25); }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: var(--font-text);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+    a { color: var(--accent-link); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    .page-head {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 20px var(--frame) 0;
+      width: 100%;
+    }
+    .home-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-display); font-weight: 400; letter-spacing: -0.02em;
+      font-size: 1.125rem; color: var(--ink); text-decoration: none;
+      min-height: 44px;
+    }
+    .home-link img { border-radius: 7px; }
+    .home-link:hover span { text-decoration: underline; text-underline-offset: 4px; }
+
+    main { flex: 1; }
+    .article {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 40px var(--frame) 24px;
+    }
+    .crumb { font-size: 0.875rem; color: var(--muted); }
+    .crumb a { color: var(--muted); }
+    .crumb a:hover { color: var(--accent-link); }
+    h1 {
+      margin: 12px 0 10px;
+      font-family: var(--font-display); font-weight: 400;
+      font-size: clamp(1.875rem, 1.4rem + 2vw, 2.75rem);
+      letter-spacing: -0.02em; line-height: 1.12;
+      text-wrap: balance;
+    }
+    .byline { margin: 0 0 36px; font-size: 0.9375rem; color: var(--muted); }
+    h2 {
+      margin: 44px 0 14px;
+      font-family: var(--font-display); font-weight: 400;
+      font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+      letter-spacing: -0.02em; line-height: 1.2;
+    }
+    p { margin: 0 0 16px; }
+    ul, ol { margin: 0 0 16px; padding-left: 24px; }
+    li { margin-bottom: 8px; }
+    code {
+      font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+      font-size: 0.875em;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1px 6px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0 24px;
+      font-size: 0.9375rem;
+      line-height: 1.5;
+    }
+    /* Wide comparison tables scroll horizontally on narrow screens */
+    @media (max-width: 640px) {
+      table { display: block; overflow-x: auto; }
+    }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+    th { font-weight: 600; border-bottom-width: 2px; }
+
+    .cta-box {
+      margin: 40px 0;
+      padding: 24px;
+      background: var(--surface);
+      border-radius: 1rem;
+    }
+    .cta-box p { margin: 0 0 16px; font-weight: 600; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 48px;
+      padding: 12px 24px;
+      font: inherit; font-size: 1rem; font-weight: 600;
+      color: #fff; background: var(--accent);
+      border: 0; border-radius: 0.75rem;
+      text-decoration: none;
+      transition: background 0.15s ease;
+    }
+    .btn:hover { background: #B91C1C; text-decoration: none; }
+    @media (prefers-color-scheme: dark) {
+      .btn:hover { background: #EF4444; }
+    }
+
+    .faq h2 { margin-top: 48px; }
+    .faq details { margin-bottom: 4px; }
+    .faq summary {
+      padding: 14px 0;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      min-height: 44px;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary svg { flex: none; transition: transform 0.2s ease; }
+    .faq details[open] summary svg { transform: rotate(180deg); }
+    .faq details p { margin: 0 0 16px; color: var(--muted); }
+
+    .sources {
+      margin: 40px 0 0;
+      padding: 16px 20px;
+      background: var(--surface);
+      border-radius: 1rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+    .sources h2 { margin: 0 0 8px; font-size: 1rem; font-family: var(--font-text); font-weight: 600; }
+    .sources ul { margin: 0; padding-left: 18px; }
+    .sources li { margin-bottom: 4px; }
+
+    .next {
+      margin: 40px 0 0;
+      font-size: 0.9375rem;
+      color: var(--muted);
+    }
+    .next a { font-weight: 600; }
+    footer.site-foot {
+      padding: 32px var(--frame) 40px;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+    footer.site-foot a { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header class="page-head">
+    <a class="home-link" href="/">
+      <img src="../images/icon-128.png" alt="" width="28" height="28">
+      <span>RTF to PDF</span>
+    </a>
+  </header>
+
+  <main>
+    <article class="article">
+      <p class="crumb"><a href="/">Home</a> / Guides</p>
+      <h1>How to Open an RTF File Without Microsoft Word</h1>
+      <p class="byline">November 7, 2026 · 4 min read</p>
+
+      <p>Someone sent you a <code>.rtf</code> file, you don't have Microsoft Word — and you don't need it. RTF has been a universal exchange format since 1987, so practically every operating system has at least one free way to open it. Pick by what you want to do: read it, edit it, or turn it into a PDF.</p>
+
+      <h2>On Windows</h2>
+      <ul>
+        <li><strong>LibreOffice Writer</strong> — free and open source; opens, edits, and exports RTF to PDF. The standard choice.</li>
+        <li><strong>WordPad</strong> — Windows' built-in editor with RTF as its native format, on Windows 10 and older. Microsoft removed it from Windows 11 in 2023, so on a fresh PC it isn't there anymore.</li>
+        <li><strong>Word Online</strong> — free with a Microsoft account in the browser; handles everyday RTF documents fine.</li>
+      </ul>
+
+      <h2>On Mac</h2>
+      <ul>
+        <li><strong>TextEdit</strong> — already on your Mac; double-click the file. For real editing, <strong>Pages</strong> opens RTF too and is free from the App Store.</li>
+        <li><strong>LibreOffice Writer</strong> — if you want the closest thing to Word without paying for it.</li>
+      </ul>
+
+      <h2>On Linux, ChromeOS, and in the browser</h2>
+      <ul>
+        <li><strong>LibreOffice Writer</strong> — the default document app on most Linux distributions.</li>
+        <li><strong>Google Docs</strong> — upload the file to Google Drive and open it; formatting survives the common cases, and you can edit from any device.</li>
+      </ul>
+
+      <h2>On a phone or tablet</h2>
+      <p>Android or iOS: open the file from the <strong>Google Docs app</strong> (it arrives via Drive or email attachment), or use the free LibreOffice viewer apps. Both render the formatting, not just the text.</p>
+
+      <h2>Quick comparison</h2>
+      <table>
+        <thead>
+          <tr><th scope="col">Option</th><th scope="col">Price</th><th scope="col">Offline</th><th scope="col">Best for</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>LibreOffice Writer</td><td>Free</td><td>Yes</td><td>Full editing, any desktop system</td></tr>
+          <tr><td>Google Docs</td><td>Free</td><td>No</td><td>Quick view and edit, sharing</td></tr>
+          <tr><td>TextEdit / Pages (Mac)</td><td>Free</td><td>Yes</td><td>Already on the Mac</td></tr>
+          <tr><td>WordPad (Win ≤10)</td><td>Free</td><td>Yes</td><td>Older Windows PCs</td></tr>
+          <tr><td>Word Online</td><td>Free</td><td>No</td><td>Microsoft account holders</td></tr>
+        </tbody>
+      </table>
+
+      <h2>If you only need to read or share it</h2>
+      <p>Often the RTF file is not the goal — a readable, unchangeable copy is. In that case converting it to PDF is simpler than installing a word processor: the free <a href="https://chromewebstore.google.com/detail/rtf-to-pdf/pobhkhkiocaphogjeglealncldfdcall" target="_blank" rel="noopener">RTF to PDF extension for Chrome</a> turns the file into a PDF on your device, with the formatting intact and nothing uploaded. PDFs open on every phone, tablet, and computer ever made.</p>
+
+      <div class="cta-box">
+        <p>Turn that RTF into a PDF in two clicks — right in the browser</p>
+        <a class="btn" href="https://chromewebstore.google.com/detail/rtf-to-pdf/pobhkhkiocaphogjeglealncldfdcall" target="_blank" rel="noopener">Get RTF to PDF for Chrome — free</a>
+      </div>
+
+      <section class="faq">
+        <h2>Frequently asked questions</h2>
+        <details>
+          <summary>Can Notepad open an RTF file?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p>It can open it, but you will see raw RTF markup — backslash codes mixed with the text — instead of the formatted document. Notepad reads plain text and has no idea what to do with formatting instructions. Use a word processor instead.</p>
+        </details>
+        <details>
+          <summary>How do I open an RTF file on Android or iPhone?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p>Upload it to Google Drive and open it with the Google Docs app, or open it directly in the free Google Docs / LibreOffice viewer apps on either platform. Both render RTF formatting on mobile.</p>
+        </details>
+        <details>
+          <summary>Can Chrome open RTF files by itself?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p>Not natively — a browser tab has no word processor in it. Two browser-friendly options: convert the RTF to PDF with the free <a href="https://chromewebstore.google.com/detail/rtf-to-pdf/pobhkhkiocaphogjeglealncldfdcall" target="_blank" rel="noopener">RTF to PDF extension</a> and read the PDF in the browser, or upload the file to Google Docs.</p>
+        </details>
+        <details>
+          <summary>Is Microsoft Word free online?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p>Word for the web is free with a Microsoft account at microsoft365.com and opens RTF files, though very complex documents are better handled by the desktop app or LibreOffice.</p>
+        </details>
+        <details>
+          <summary>What happened to WordPad?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p>WordPad, which used RTF as its default format, was removed from Windows 11 by Microsoft in 2023. On Windows 10 and older it is still present; on current Windows, use LibreOffice or Word instead.</p>
+        </details>
+      </section>
+
+      <p class="next">Next: <a href="what-is-rtf.html">What is an RTF file?</a> · <a href="rtf-to-pdf-offline.html">Convert RTF to PDF without uploading it</a></p>
+    </article>
+  </main>
+
+  <footer class="site-foot">
+    <a href="/">rtf2pdf.app</a> · <a href="../privacy.html">Privacy policy</a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is an RTF File? How to Open, Edit, and Convert It | RTF to PDF</title>
+  <meta name="description" content="An RTF file is a Rich Text Format document created by Microsoft in 1987. Learn what's inside, how to open it on any system, and how to convert it to PDF.">
+  <link rel="canonical" href="https://rtf2pdf.app/guides/what-is-rtf.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="RTF to PDF">
+  <meta property="og:title" content="What Is an RTF File? How to Open, Edit, and Convert It">
+  <meta property="og:description" content="What's inside a Rich Text Format file, how to open it on any system, and how to turn it into a PDF.">
+  <meta property="og:url" content="https://rtf2pdf.app/guides/what-is-rtf.html">
+  <meta property="og:image" content="https://rtf2pdf.app/images/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="../images/icon-128.png">
+  <!-- Fonts self-hosted (latin subset), no third-party CDN dependency -->
+  <link rel="preload" href="../fonts/archivo-black-400.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK16L10K7N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    // Owner's own visits: open any page once with ?internal=1 to mark this
+    // browser; GA4's "Internal Traffic" data filter excludes traffic_type=internal.
+    (function () {
+      try {
+        if (/[?&]internal=1/.test(location.search) || localStorage.getItem("rtf2pdf-internal") === "1") {
+          localStorage.setItem("rtf2pdf-internal", "1");
+          gtag('set', { traffic_type: 'internal' });
+        }
+      } catch (e) {}
+    })();
+    gtag('config', 'G-FK16L10K7N');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What Is an RTF File? How to Open, Edit, and Convert It",
+    "description": "What's inside a Rich Text Format file, how to open it on any system, and how to turn it into a PDF.",
+    "datePublished": "2026-11-07",
+    "dateModified": "2026-11-07",
+    "author": { "@type": "Organization", "name": "RTF to PDF", "url": "https://rtf2pdf.app/" },
+    "publisher": { "@type": "Organization", "name": "RTF to PDF", "url": "https://rtf2pdf.app/" },
+    "mainEntityOfPage": "https://rtf2pdf.app/guides/what-is-rtf.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Is an RTF file the same as a PDF?", "acceptedAnswer": { "@type": "Answer", "text": "No. RTF is an editable document format whose look depends on the program that opens it; PDF is a fixed-layout format that looks the same everywhere and is meant for sharing, not editing." } },
+      { "@type": "Question", "name": "Is RTF still used in 2026?", "acceptedAnswer": { "@type": "Answer", "text": "Less than before, but yes. Word processors still export it, older business systems still generate it, and it remains a common format for documents passed between different programs and platforms." } },
+      { "@type": "Question", "name": "Are RTF files safe to open?", "acceptedAnswer": { "@type": "Answer", "text": "RTF itself is just formatted text and cannot run code, which historically made it safer than .doc files that could carry macros. Malware has occasionally disguised itself with an .rtf extension, so treat unexpected attachments the same way as any other: only open ones you expect." } },
+      { "@type": "Question", "name": "Can I edit an RTF file?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, that is what it is for. Open it in any word processor — Microsoft Word, LibreOffice Writer, Google Docs — edit the text and formatting, and save it back to RTF or another format." } },
+      { "@type": "Question", "name": "How do I convert an RTF file to PDF for free?", "acceptedAnswer": { "@type": "Answer", "text": "Use the free RTF to PDF extension for Chrome: drop the file, press Convert, and get a PDF without uploading anything. Or use Word or LibreOffice's built-in Save as PDF if you already have the file open there." } }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ===== Self-hosted webfonts (latin) ===== */
+    @font-face {
+      font-family: "Archivo Black";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("../fonts/archivo-black-400.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Libre Franklin";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("../fonts/libre-franklin-400.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Libre Franklin";
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url("../fonts/libre-franklin-600.woff2") format("woff2");
+    }
+
+    /* Tokens, same system as the rest of the site */
+    :root {
+      --bg: #F1F1EE;
+      --surface: #FAFAF7;
+      --ink: #1D1C1A;
+      --muted: #6D6A64;
+      --border: #D9D6CE;
+      --accent: #DC2626;
+      --accent-link: #B91C1C;
+      --font-display: "Archivo Black", "Arial Black", "Libre Franklin", sans-serif;
+      --font-text: "Libre Franklin", -apple-system, "Segoe UI", Roboto, sans-serif;
+      --frame: clamp(16px, 2.5vw, 40px);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #131316;
+        --surface: #1D1F23;
+        --ink: #F1F2F4;
+        --muted: #9BA1A9;
+        --border: #2E3138;
+        --accent-link: #F87171;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scrollbar-gutter: stable; }
+    ::selection { background: rgb(220 38 38 / 0.25); }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: var(--font-text);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+    a { color: var(--accent-link); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    .page-head {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 20px var(--frame) 0;
+      width: 100%;
+    }
+    .home-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-display); font-weight: 400; letter-spacing: -0.02em;
+      font-size: 1.125rem; color: var(--ink); text-decoration: none;
+      min-height: 44px;
+    }
+    .home-link img { border-radius: 7px; }
+    .home-link:hover span { text-decoration: underline; text-underline-offset: 4px; }
+
+    main { flex: 1; }
+    .article {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 40px var(--frame) 24px;
+    }
+    .crumb { font-size: 0.875rem; color: var(--muted); }
+    .crumb a { color: var(--muted); }
+    .crumb a:hover { color: var(--accent-link); }
+    h1 {
+      margin: 12px 0 10px;
+      font-family: var(--font-display); font-weight: 400;
+      font-size: clamp(1.875rem, 1.4rem + 2vw, 2.75rem);
+      letter-spacing: -0.02em; line-height: 1.12;
+      text-wrap: balance;
+    }
+    .byline { margin: 0 0 36px; font-size: 0.9375rem; color: var(--muted); }
+    h2 {
+      margin: 44px 0 14px;
+      font-family: var(--font-display); font-weight: 400;
+      font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+      letter-spacing: -0.02em; line-height: 1.2;
+    }
+    p { margin: 0 0 16px; }
+    ul, ol { margin: 0 0 16px; padding-left: 24px; }
+    li { margin-bottom: 8px; }
+    code {
+      font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+      font-size: 0.875em;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1px 6px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0 24px;
+      font-size: 0.9375rem;
+      line-height: 1.5;
+    }
+    /* Wide comparison tables scroll horizontally on narrow screens */
+    @media (max-width: 640px) {
+      table { display: block; overflow-x: auto; }
+    }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+    th { font-weight: 600; border-bottom-width: 2px; }
+
+    .cta-box {
+      margin: 40px 0;
+      padding: 24px;
+      background: var(--surface);
+      border-radius: 1rem;
+    }
+    .cta-box p { margin: 0 0 16px; font-weight: 600; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 48px;
+      padding: 12px 24px;
+      font: inherit; font-size: 1rem; font-weight: 600;
+      color: #fff; background: var(--accent);
+      border: 0; border-radius: 0.75rem;
+      text-decoration: none;
+      transition: background 0.15s ease;
+    }
+    .btn:hover { background: #B91C1C; text-decoration: none; }
+    @media (prefers-color-scheme: dark) {
+      .btn:hover { background: #EF4444; }
+    }
+
+    .faq h2 { margin-top: 48px; }
+    .faq details { margin-bottom: 4px; }
+    .faq summary {
+      padding: 14px 0;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      min-height: 44px;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary svg { flex: none; transition: transform 0.2s ease; }
+    .faq details[open] summary svg { transform: rotate(180deg); }
+    .faq details p { margin: 0 0 16px; color: var(--muted); }
+
+    .sources {
+      margin: 40px 0 0;
+      padding: 16px 20px;
+      background: var(--surface);
+      border-radius: 1rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+    .sources h2 { margin: 0 0 8px; font-size: 1rem; font-family: var(--font-text); font-weight: 600; }
+    .sources ul { margin: 0; padding-left: 18px; }
+    .sources li { margin-bottom: 4px; }
+
+    .next {
+      margin: 40px 0 0;
+      font-size: 0.9375rem;
+      color: var(--muted);
+    }
+    .next a { font-weight: 600; }
+    footer.site-foot {
+      padding: 32px var(--frame) 40px;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+    footer.site-foot a { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header class="page-head">
+    <a class="home-link" href="/">
+      <img src="../images/icon-128.png" alt="" width="28" height="28">
+      <span>RTF to PDF</span>
+    </a>
+  </header>
+
+  <main>
+    <article class="article">
+      <p class="crumb"><a href="/">Home</a> / Guides</p>
+      <h1>What Is an RTF File? How to Open, Edit, and Convert It</h1>
+      <p class="byline">November 7, 2026 · 5 min read</p>
+
+      <p>You double-click an attachment and there it is: a <code>.rtf</code> file. Maybe it came from an old business system, a teacher, a relative with an ancient copy of Word — or from WordPad, which used RTF as its default format for decades. Here is what that file actually is, what you can do with it, and how to turn it into a PDF when you need one.</p>
+
+      <h2>RTF means Rich Text Format</h2>
+      <p>RTF is a document format that Microsoft introduced in 1987 to solve a then-new problem: people wanted formatted documents — bold headings, tables, fonts — to move between different word processors and operating systems without falling apart. The format is managed by Microsoft and its specification has been essentially frozen at version 1.9.1 since 2008, which is a big part of why any program from the last thirty years can still read it.</p>
+      <p>The idea behind the name: plain text files store only characters, while <em>rich</em> text stores characters <em>plus</em> their formatting — bold, italics, font sizes, colors, margins, tables, and embedded images.</p>
+
+      <h2>What an RTF file looks like inside</h2>
+      <p>Here is the part that surprises people: an RTF file is plain text. Open one in Notepad and you will see readable markup like <code>{\rtf1\ansi Hello \b world\b0}</code> — where <code>\b</code> switches bold on and <code>\b0</code> switches it off. Every formatting instruction is spelled out in text, which is exactly why the format is so portable: any program can parse it, on any platform, without needing the software that created it.</p>
+      <p>This is also why RTF files are larger than their .doc equivalents: the same document spelled out in longhand simply takes more bytes.</p>
+
+      <h2>How to open an RTF file</h2>
+      <p>Pick whatever you already have:</p>
+      <ul>
+        <li><strong>Microsoft Word</strong> — opens and edits RTF natively; the safest choice for exact formatting.</li>
+        <li><strong>LibreOffice Writer</strong> — free and open source, handles RTF well on Windows, macOS, and Linux.</li>
+        <li><strong>Google Docs</strong> — upload the file to Drive and open it; formatting survives the common cases.</li>
+        <li><strong>Apple TextEdit or Pages</strong> — TextEdit opens RTF directly on macOS; Pages converts it on open.</li>
+        <li><strong>WordPad</strong> — was Windows' built-in RTF editor for decades, but Microsoft removed it from Windows 11 in 2023, so it is only an option on older systems.</li>
+      </ul>
+      <p>One warning: don't judge an RTF file by how it looks in a basic text editor — you are seeing the markup, not the formatted document.</p>
+
+      <h2>RTF vs PDF: the difference that matters</h2>
+      <p>An RTF file describes formatting as <em>instructions</em>, so its final look depends on the program that interprets them — fonts substitute, tables shift, margins move. A PDF freezes the page: it stores the finished layout, which is why it looks identical everywhere and is the expected format for contracts, applications, and anything official.</p>
+      <p>That difference is the whole reason conversion exists: you write and edit in RTF, you <em>share</em> as PDF.</p>
+
+      <div class="cta-box">
+        <p>Convert RTF to PDF without uploading it anywhere</p>
+        <a class="btn" href="https://chromewebstore.google.com/detail/rtf-to-pdf/pobhkhkiocaphogjeglealncldfdcall" target="_blank" rel="noopener">Get RTF to PDF for Chrome — free</a>
+      </div>
+
+      <h2>How to convert an RTF file to PDF</h2>
+      <p>Two dependable routes:</p>
+      <ol>
+        <li><strong>In your browser, locally.</strong> Install the free <a href="https://chromewebstore.google.com/detail/rtf-to-pdf/pobhkhkiocaphogjeglealncldfdcall" target="_blank" rel="noopener">RTF to PDF extension for Chrome</a>, click its toolbar icon, drop in your file, press Convert. The file never leaves your device — the conversion runs in the browser, and it works offline.</li>
+        <li><strong>In a word processor.</strong> Open the RTF in Word or LibreOffice and use Save As / Export to PDF. Fine when you already have the app open; slower when you just have a file and want a PDF.</li>
+      </ol>
+      <p>Avoid pasting RTF content into online converters when the document is sensitive — contracts, invoices, personal records. Uploading means trusting someone else's server with it; the two routes above keep the file on your machine.</p>
+
+      <section class="faq">
+        <h2>Frequently asked questions</h2>
+        <details>
+          <summary>Is an RTF file the same as a PDF?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p>No. RTF is an editable document format whose look depends on the program that opens it; PDF is a fixed-layout format that looks the same everywhere and is meant for sharing, not editing.</p>
+        </details>
+        <details>
+          <summary>Is RTF still used in 2026?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p>Less than before, but yes. Word processors still export it, older business systems still generate it, and it remains a common format for documents passed between different programs and platforms.</p>
+        </details>
+        <details>
+          <summary>Are RTF files safe to open?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p>RTF itself is just formatted text and cannot run code, which historically made it safer than .doc files that could carry macros. Malware has occasionally disguised itself with an .rtf extension, so treat unexpected attachments the same way as any other: only open ones you expect.</p>
+        </details>
+        <details>
+          <summary>Can I edit an RTF file?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p>Yes, that is what it is for. Open it in any word processor — Microsoft Word, LibreOffice Writer, Google Docs — edit the text and formatting, and save it back to RTF or another format.</p>
+        </details>
+        <details>
+          <summary>How do I convert an RTF file to PDF for free?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p>Use the free <a href="https://chromewebstore.google.com/detail/rtf-to-pdf/pobhkhkiocaphogjeglealncldfdcall" target="_blank" rel="noopener">RTF to PDF extension for Chrome</a>: drop the file, press Convert, and get a PDF without uploading anything. Or use Word or LibreOffice's built-in Save as PDF if you already have the file open there.</p>
+        </details>
+      </section>
+
+      <div class="sources">
+        <h2>Sources</h2>
+        <ul>
+          <li><a href="https://www.loc.gov/preservation/digital/formats/fdd/fdd000473.shtml" target="_blank" rel="noopener">Library of Congress — Rich Text Format description</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Rich_Text_Format" target="_blank" rel="noopener">Wikipedia — Rich Text Format (spec history, v1.9.1)</a></li>
+        </ul>
+      </div>
+
+      <p class="next">Next: <a href="rtf-to-pdf-offline.html">How to convert RTF to PDF without uploading it anywhere</a> · <a href="rtf-vs-doc-vs-docx-vs-pdf.html">RTF vs DOC vs DOCX vs PDF</a></p>
+    </article>
+  </main>
+
+  <footer class="site-foot">
+    <a href="/">rtf2pdf.app</a> · <a href="../privacy.html">Privacy policy</a>
+  </footer>
+</body>
+</html>

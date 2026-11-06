@@ -9,6 +9,13 @@
 - [Privacy policy](https://rtf2pdf.app/privacy.html): what data is and is not collected
 - [Install page (Chrome Web Store)](https://chromewebstore.google.com/detail/rtf-to-pdf/pobhkhkiocaphogjeglealncldfdcall): free install, Chromium desktop browsers
 
+## Guides
+
+- [What Is an RTF File?](https://rtf2pdf.app/guides/what-is-rtf.html): what the Rich Text Format is, what's inside the file, how to open and edit it
+- [How to Convert RTF to PDF Without Uploading It](https://rtf2pdf.app/guides/rtf-to-pdf-offline.html): offline conversion methods compared — browser extension vs Word vs LibreOffice vs online converters
+- [How to Open an RTF File Without Microsoft Word](https://rtf2pdf.app/guides/open-rtf-without-word.html): free options on Windows, Mac, Linux, and mobile
+- [RTF vs DOC vs DOCX vs PDF](https://rtf2pdf.app/guides/rtf-vs-doc-vs-docx-vs-pdf.html): comparison table of the four formats and when to use each
+
 ## Key facts
 
 - Input format: `.rtf` only (not `.doc`/`.docx`).

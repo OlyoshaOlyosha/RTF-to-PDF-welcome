@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Convert RTF to PDF Without Uploading It Anywhere | RTF to PDF</title>
+  <meta name="description" content="Convert RTF to PDF offline: in your browser with a free extension, or with Word and LibreOffice. No uploads, no accounts, no file size limits — your document never leaves your device.">
+  <link rel="canonical" href="https://rtf2pdf.app/guides/rtf-to-pdf-offline.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="RTF to PDF">
+  <meta property="og:title" content="How to Convert RTF to PDF Without Uploading It Anywhere">
+  <meta property="og:description" content="Three offline ways to turn RTF into PDF — in your browser, in Word, or in LibreOffice. No uploads.">
+  <meta property="og:url" content="https://rtf2pdf.app/guides/rtf-to-pdf-offline.html">
+  <meta property="og:image" content="https://rtf2pdf.app/images/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="../images/icon-128.png">
+  <!-- Fonts self-hosted (latin subset), no third-party CDN dependency -->
+  <link rel="preload" href="../fonts/archivo-black-400.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK16L10K7N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    // Owner's own visits: open any page once with ?internal=1 to mark this
+    // browser; GA4's "Internal Traffic" data filter excludes traffic_type=internal.
+    (function () {
+      try {
+        if (/[?&]internal=1/.test(location.search) || localStorage.getItem("rtf2pdf-internal") === "1") {
+          localStorage.setItem("rtf2pdf-internal", "1");
+          gtag('set', { traffic_type: 'internal' });
+        }
+      } catch (e) {}
+    })();
+    gtag('config', 'G-FK16L10K7N');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Convert RTF to PDF Without Uploading It Anywhere",
+    "description": "Three offline ways to turn RTF into PDF — in your browser, in Word, or in LibreOffice. No uploads.",
+    "datePublished": "2026-11-07",
+    "dateModified": "2026-11-07",
+    "author": { "@type": "Organization", "name": "RTF to PDF", "url": "https://rtf2pdf.app/" },
+    "publisher": { "@type": "Organization", "name": "RTF to PDF", "url": "https://rtf2pdf.app/" },
+    "mainEntityOfPage": "https://rtf2pdf.app/guides/rtf-to-pdf-offline.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Are online RTF to PDF converters safe?", "acceptedAnswer": { "@type": "Answer", "text": "Reputable ones are honest about deleting files after a period, but the fact remains: your document is transmitted to and processed on somebody else's server. For contracts, invoices, medical or legal papers, a converter that never uploads the file is the safer category." } },
+      { "@type": "Question", "name": "Is there an offline RTF to PDF converter?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The free RTF to PDF extension for Chrome converts entirely in your browser with no upload, and Word or LibreOffice can export an open RTF file to PDF from the Save As / Export menu." } },
+      { "@type": "Question", "name": "Does converting RTF to PDF lose formatting?", "acceptedAnswer": { "@type": "Answer", "text": "With a converter built for the job, no: fonts, colors, tables and images are kept, and the text in the PDF stays selectable and copyable. Quality drops mainly when a converter re-processes the file on a server or rasterizes it to an image." } },
+      { "@type": "Question", "name": "Is there a file size limit for offline conversion?", "acceptedAnswer": { "@type": "Answer", "text": "Not one imposed by a server, since nothing is sent anywhere. The only limit is your own device's memory, which comfortably handles documents far larger than any online converter's free tier allows." } },
+      { "@type": "Question", "name": "Do offline converters work without internet?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The RTF to PDF extension converts offline after installation, and word processors obviously do. That is a direct consequence of the file never leaving your device." } }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ===== Self-hosted webfonts (latin) ===== */
+    @font-face {
+      font-family: "Archivo Black";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("../fonts/archivo-black-400.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Libre Franklin";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("../fonts/libre-franklin-400.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Libre Franklin";
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url("../fonts/libre-franklin-600.woff2") format("woff2");
+    }
+
+    /* Tokens, same system as the rest of the site */
+    :root {
+      --bg: #F1F1EE;
+      --surface: #FAFAF7;
+      --ink: #1D1C1A;
+      --muted: #6D6A64;
+      --border: #D9D6CE;
+      --accent: #DC2626;
+      --accent-link: #B91C1C;
+      --font-display: "Archivo Black", "Arial Black", "Libre Franklin", sans-serif;
+      --font-text: "Libre Franklin", -apple-system, "Segoe UI", Roboto, sans-serif;
+      --frame: clamp(16px, 2.5vw, 40px);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #131316;
+        --surface: #1D1F23;
+        --ink: #F1F2F4;
+        --muted: #9BA1A9;
+        --border: #2E3138;
+        --accent-link: #F87171;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scrollbar-gutter: stable; }
+    ::selection { background: rgb(220 38 38 / 0.25); }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: var(--font-text);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+    a { color: var(--accent-link); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    .page-head {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 20px var(--frame) 0;
+      width: 100%;
+    }
+    .home-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-display); font-weight: 400; letter-spacing: -0.02em;
+      font-size: 1.125rem; color: var(--ink); text-decoration: none;
+      min-height: 44px;
+    }
+    .home-link img { border-radius: 7px; }
+    .home-link:hover span { text-decoration: underline; text-underline-offset: 4px; }
+
+    main { flex: 1; }
+    .article {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 40px var(--frame) 24px;
+    }
+    .crumb { font-size: 0.875rem; color: var(--muted); }
+    .crumb a { color: var(--muted); }
+    .crumb a:hover { color: var(--accent-link); }
+    h1 {
+      margin: 12px 0 10px;
+      font-family: var(--font-display); font-weight: 400;
+      font-size: clamp(1.875rem, 1.4rem + 2vw, 2.75rem);
+      letter-spacing: -0.02em; line-height: 1.12;
+      text-wrap: balance;
+    }
+    .byline { margin: 0 0 36px; font-size: 0.9375rem; color: var(--muted); }
+    h2 {
+      margin: 44px 0 14px;
+      font-family: var(--font-display); font-weight: 400;
+      font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+      letter-spacing: -0.02em; line-height: 1.2;
+    }
+    p { margin: 0 0 16px; }
+    ul, ol { margin: 0 0 16px; padding-left: 24px; }
+    li { margin-bottom: 8px; }
+    code {
+      font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+      font-size: 0.875em;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1px 6px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0 24px;
+      font-size: 0.9375rem;
+      line-height: 1.5;
+    }
+    /* Wide comparison tables scroll horizontally on narrow screens */
+    @media (max-width: 640px) {
+      table { display: block; overflow-x: auto; }
+    }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+    th { font-weight: 600; border-bottom-width: 2px; }
+
+    .cta-box {
+      margin: 40px 0;
+      padding: 24px;
+      background: var(--surface);
+      border-radius: 1rem;
+    }
+    .cta-box p { margin: 0 0 16px; font-weight: 600; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 48px;
+      padding: 12px 24px;
+      font: inherit; font-size: 1rem; font-weight: 600;
+      color: #fff; background: var(--accent);
+      border: 0; border-radius: 0.75rem;
+      text-decoration: none;
+      transition: background 0.15s ease;
+    }
+    .btn:hover { background: #B91C1C; text-decoration: none; }
+    @media (prefers-color-scheme: dark) {
+      .btn:hover { background: #EF4444; }
+    }
+
+    .faq h2 { margin-top: 48px; }
+    .faq details { margin-bottom: 4px; }
+    .faq summary {
+      padding: 14px 0;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      min-height: 44px;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary svg { flex: none; transition: transform 0.2s ease; }
+    .faq details[open] summary svg { transform: rotate(180deg); }
+    .faq details p { margin: 0 0 16px; color: var(--muted); }
+
+    .sources {
+      margin: 40px 0 0;
+      padding: 16px 20px;
+      background: var(--surface);
+      border-radius: 1rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+    .sources h2 { margin: 0 0 8px; font-size: 1rem; font-family: var(--font-text); font-weight: 600; }
+    .sources ul { margin: 0; padding-left: 18px; }
+    .sources li { margin-bottom: 4px; }
+
+    .next {
+      margin: 40px 0 0;
+      font-size: 0.9375rem;
+      color: var(--muted);
+    }
+    .next a { font-weight: 600; }
+    footer.site-foot {
+      padding: 32px var(--frame) 40px;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+    footer.site-foot a { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header class="page-head">
+    <a class="home-link" href="/">
+      <img src="../images/icon-128.png" alt="" width="28" height="28">
+      <span>RTF to PDF</span>
+    </a>
+  </header>
+
+  <main>
+    <article class="article">
+      <p class="crumb"><a href="/">Home</a> / Guides</p>
+      <h1>How to Convert RTF to PDF Without Uploading It Anywhere</h1>
+      <p class="byline">November 7, 2026 · 5 min read</p>
+
+      <p>Most "RTF to PDF" results you find are online converters, and they all work the same way: you hand your document to a stranger's server, wait for it to come back, and hope the deletion policy means what it says. For a recipe that is fine. For a contract, an invoice, a medical letter, or anything with a name on it, it is an avoidable risk — because PDF conversion can happen entirely on your own device. Here are three ways, from fastest to most familiar.</p>
+
+      <h2>Method 1: in your browser, with a free extension</h2>
+      <p>The <a href="https://chromewebstore.google.com/detail/rtf-to-pdf/pobhkhkiocaphogjeglealncldfdcall" target="_blank" rel="noopener">RTF to PDF extension for Chrome</a> converts the file inside your browser:</p>
+      <ol>
+        <li>Install the extension from the Chrome Web Store (free, no account).</li>
+        <li>Click its icon in the toolbar and drop your <code>.rtf</code> file in.</li>
+        <li>Press Convert — the PDF lands in your download folder.</li>
+      </ol>
+      <p>Nothing is uploaded, which brings three practical benefits along with the privacy: it <strong>works offline</strong>, there is <strong>no file size cap</strong> from somebody's free tier, and there is <strong>no queue</strong> — you are not sharing somebody's server with the rest of the internet.</p>
+
+      <div class="cta-box">
+        <p>Converts on your device — nothing is uploaded, ever</p>
+        <a class="btn" href="https://chromewebstore.google.com/detail/rtf-to-pdf/pobhkhkiocaphogjeglealncldfdcall" target="_blank" rel="noopener">Get RTF to PDF for Chrome — free</a>
+      </div>
+
+      <h2>Method 2: Microsoft Word</h2>
+      <p>If the file is already open in Word: <strong>File → Save As → PDF</strong> (or File → Export → Create PDF). This converts offline and keeps formatting, at the cost of owning Word and opening the app for what is a ten-second job.</p>
+
+      <h2>Method 3: LibreOffice Writer (free)</h2>
+      <p>LibreOffice opens RTF natively and exports to PDF the same way: <strong>File → Export As → Export as PDF</strong>. It is free on Windows, macOS, and Linux, and everything runs locally.</p>
+
+      <h2>What actually happens with an online converter</h2>
+      <p>To be fair to them: established online converters use HTTPS, publish retention policies, and reputable ones do delete files on schedule. But the mechanics are unavoidable — your document is transmitted to, stored on, and processed by someone else's computer. Even with the best policy in the world, the file existed outside your control for a window of time. Offline conversion simply has no such window.</p>
+
+      <h2>Which one to pick</h2>
+      <table>
+        <thead>
+          <tr><th scope="col"></th><th scope="col">Browser extension</th><th scope="col">Online converter</th><th scope="col">Word / LibreOffice</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>File leaves your device</td><td>No</td><td>Yes</td><td>No</td></tr>
+          <tr><td>Works offline</td><td>Yes</td><td>No</td><td>Yes</td></tr>
+          <tr><td>Account required</td><td>No</td><td>Sometimes</td><td>No</td></tr>
+          <tr><td>Watermarks or daily caps</td><td>No</td><td>On free tiers</td><td>No</td></tr>
+          <tr><td>Effort for one file</td><td>Two clicks</td><td>Upload + wait + download</td><td>Open the app first</td></tr>
+        </tbody>
+      </table>
+      <p>For regular conversions of private documents, the extension wins on every row. Word or LibreOffice are there when the document is already open in one of them anyway.</p>
+
+      <section class="faq">
+        <h2>Frequently asked questions</h2>
+        <details>
+          <summary>Are online RTF to PDF converters safe?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p>Reputable ones are honest about deleting files after a period, but the fact remains: your document is transmitted to and processed on somebody else's server. For contracts, invoices, medical or legal papers, a converter that never uploads the file is the safer category.</p>
+        </details>
+        <details>
+          <summary>Is there an offline RTF to PDF converter?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p>Yes. The free <a href="https://chromewebstore.google.com/detail/rtf-to-pdf/pobhkhkiocaphogjeglealncldfdcall" target="_blank" rel="noopener">RTF to PDF extension for Chrome</a> converts entirely in your browser with no upload, and Word or LibreOffice can export an open RTF file to PDF from the Save As / Export menu.</p>
+        </details>
+        <details>
+          <summary>Does converting RTF to PDF lose formatting?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p>With a converter built for the job, no: fonts, colors, tables and images are kept, and the text in the PDF stays selectable and copyable. Quality drops mainly when a converter re-processes the file on a server or rasterizes it to an image.</p>
+        </details>
+        <details>
+          <summary>Is there a file size limit for offline conversion?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p>Not one imposed by a server, since nothing is sent anywhere. The only limit is your own device's memory, which comfortably handles documents far larger than any online converter's free tier allows.</p>
+        </details>
+        <details>
+          <summary>Do offline converters work without internet?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p>Yes. The RTF to PDF extension converts offline after installation, and word processors obviously do. That is a direct consequence of the file never leaving your device.</p>
+        </details>
+      </section>
+
+      <p class="next">Next: <a href="what-is-rtf.html">What is an RTF file?</a> · <a href="open-rtf-without-word.html">How to open an RTF file without Microsoft Word</a></p>
+    </article>
+  </main>
+
+  <footer class="site-foot">
+    <a href="/">rtf2pdf.app</a> · <a href="../privacy.html">Privacy policy</a>
+  </footer>
+</body>
+</html>
