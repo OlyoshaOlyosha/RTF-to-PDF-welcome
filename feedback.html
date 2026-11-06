@@ -44,7 +44,7 @@
 
     body {
       margin: 0;
-      padding: 32px 20px;
+      padding: 24px 20px 32px;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       font-size: 16px;
       line-height: 1.6;
@@ -63,10 +63,14 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      margin-bottom: 24px;
+      margin-bottom: 16px;
+      padding: 6px 12px;
+      color: inherit;
+      text-decoration: none;
     }
     .header img { width: 32px; height: 32px; border-radius: 6px; }
     .header span { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+    .header:hover span { text-decoration: underline; text-underline-offset: 4px; }
 
     h1 {
       margin: 0 0 12px;
@@ -77,7 +81,7 @@
     }
 
     .lead {
-      margin: 0 0 24px;
+      margin: 0 0 16px;
       font-size: 17px;
       color: var(--muted-foreground);
       text-align: center;
@@ -86,7 +90,7 @@
     .rating-chip {
       display: none;
       justify-content: center;
-      margin: -8px 0 24px;
+      margin: -8px 0 16px;
     }
     .rating-chip span {
       font-size: 14px;
@@ -100,11 +104,11 @@
     fieldset {
       border: 0;
       padding: 0;
-      margin: 0 0 24px;
+      margin: 0 0 20px;
     }
     legend {
       padding: 0;
-      margin: 0 0 12px;
+      margin: 0 0 10px;
       font-size: 17px;
       font-weight: 600;
     }
@@ -118,14 +122,14 @@
     .choices {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
     .choice {
       display: flex;
       align-items: flex-start;
       gap: 12px;
       min-height: 48px;
-      padding: 12px 16px;
+      padding: 10px 14px;
       background: var(--background);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -182,10 +186,10 @@
     }
 
     /* ===== Text / textarea ===== */
-    .field { margin: 0 0 24px; }
+    .field { margin: 0 0 20px; }
     .field label {
       display: block;
-      margin: 0 0 12px;
+      margin: 0 0 10px;
       font-size: 17px;
       font-weight: 600;
     }
@@ -200,7 +204,7 @@
       border-radius: var(--radius);
       resize: vertical;
     }
-    textarea { min-height: 96px; }
+    textarea { min-height: 80px; }
     .email-input { min-height: 48px; }
     textarea:focus, .email-input:focus {
       outline: 2px solid var(--primary);
@@ -319,10 +323,10 @@
 </head>
 <body>
   <main class="page">
-    <div class="header">
+    <a class="header" href="/">
       <img src="images/icon-128.png" alt="" width="32" height="32">
       <span>RTF to PDF</span>
-    </div>
+    </a>
 
     <h1>Help us improve RTF to PDF</h1>
     <p class="lead">
@@ -333,8 +337,6 @@
     <div class="rating-chip" id="rating-chip"><span></span></div>
 
     <form id="feedback-form" novalidate>
-      <p class="form-error" id="form-error" role="alert"></p>
-
       <fieldset>
         <legend>What went wrong?</legend>
         <div class="choices">
@@ -388,6 +390,9 @@
 
       <!-- Honeypot: humans never see or fill this -->
       <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <!-- Error shows next to the button the user just clicked -->
+      <p class="form-error" id="form-error" role="alert"></p>
 
       <button type="submit" class="submit-btn" id="submit-btn">Send feedback</button>
     </form>
