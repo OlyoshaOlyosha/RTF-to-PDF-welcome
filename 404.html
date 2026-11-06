@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page not found | rtf2pdf.app</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="images/icon-128.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Libre+Franklin:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK16L10K7N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-FK16L10K7N');
+  </script>
+
+  <style>
+    /* Tokens, same system as privacy.html */
+    :root {
+      --bg: #F1F1EE;
+      --surface: #FAFAF7;
+      --ink: #1D1C1A;
+      --muted: #6D6A64;
+      --accent: #DC2626;
+      --accent-link: #B91C1C;
+      --font-display: "Archivo Black", "Libre Franklin", sans-serif;
+      --font-text: "Libre Franklin", -apple-system, "Segoe UI", Roboto, sans-serif;
+      --frame: clamp(16px, 2.5vw, 40px);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #131316;
+        --surface: #1D1F23;
+        --ink: #F1F2F4;
+        --muted: #9BA1A9;
+        --accent-link: #F87171;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scrollbar-gutter: stable; }
+    ::selection { background: rgb(220 38 38 / 0.25); }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: var(--font-text);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+    /* Header: same home link as the other pages */
+    .page-head {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 20px var(--frame) 0;
+      width: 100%;
+    }
+    .home-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-display); font-weight: 400; letter-spacing: -0.02em;
+      font-size: 1.125rem; color: var(--ink); text-decoration: none;
+      min-height: 44px;
+    }
+    .home-link img { border-radius: 7px; }
+    .home-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px var(--frame) 96px;
+    }
+    .card { max-width: 520px; text-align: center; }
+    .code {
+      margin: 0;
+      font-family: var(--font-display); font-weight: 400;
+      font-size: clamp(5rem, 24vw, 9rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--accent);
+    }
+    h1 {
+      margin: 16px 0 12px;
+      font-family: var(--font-display); font-weight: 400;
+      font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+      letter-spacing: -0.02em; line-height: 1.15;
+      text-wrap: balance;
+    }
+    .lead { margin: 0 0 28px; color: var(--muted); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 48px;
+      padding: 12px 28px;
+      font: inherit; font-size: 1rem; font-weight: 600;
+      color: #fff; background: var(--accent);
+      border: 0; border-radius: 0.75rem;
+      text-decoration: none;
+      transition: background 0.15s ease;
+    }
+    .btn:hover { background: #B91C1C; }
+    /* Red hover fails contrast on the near-black dark bg; keep it readable */
+    @media (prefers-color-scheme: dark) {
+      .btn:hover { background: #EF4444; }
+    }
+    .alt {
+      margin: 20px 0 0;
+      font-size: 0.9375rem;
+      color: var(--muted);
+    }
+    .alt a { color: var(--accent-link); text-decoration: none; }
+    .alt a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <header class="page-head">
+    <a class="home-link" href="/">
+      <img src="images/icon-128.png" alt="" width="28" height="28">
+      <span>RTF to PDF</span>
+    </a>
+  </header>
+
+  <main>
+    <div class="card">
+      <p class="code">404</p>
+      <h1>This page doesn't exist</h1>
+      <p class="lead">The link may be outdated or mistyped. Your files are fine — the converter is one click away.</p>
+      <a class="btn" href="/">Go to the homepage</a>
+      <p class="alt">Need the extension? <a href="https://chromewebstore.google.com/detail/rtf-to-pdf/pobhkhkiocaphogjeglealncldfdcall" target="_blank" rel="noopener">Get it on the Chrome Web Store</a>.</p>
+    </div>
+  </main>
+
+  <script>
+    // How often visitors land on a broken link (page_view only, no extra events)
+    if (typeof gtag === "function") gtag("event", "page_404");
+  </script>
+</body>
+</html>
