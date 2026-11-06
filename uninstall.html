@@ -627,6 +627,11 @@
           showError("Please pick the primary reason first.");
           return;
         }
+        if (selected("reason") === "Other" && !otherText.value.trim()) {
+          showError("Tell us briefly why you're leaving.");
+          otherText.focus();
+          return;
+        }
 
         var payload = currentReasonPayload();
         payload.met = selected("met");

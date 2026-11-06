@@ -87,20 +87,6 @@
       text-align: center;
     }
 
-    .rating-chip {
-      display: none;
-      justify-content: center;
-      margin: -8px 0 16px;
-    }
-    .rating-chip span {
-      font-size: 14px;
-      color: var(--muted-foreground);
-      background: var(--muted);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 6px 14px;
-    }
-
     fieldset {
       border: 0;
       padding: 0;
@@ -334,8 +320,6 @@
       and fix real problems fast.
     </p>
 
-    <div class="rating-chip" id="rating-chip"><span></span></div>
-
     <form id="feedback-form" novalidate>
       <fieldset>
         <legend>What went wrong?</legend>
@@ -446,15 +430,9 @@
 
       document.getElementById("fallback-link").href = FALLBACK_URL;
 
-      // Silent star rating from the extension (?stars=N)
+      // Silent star rating from the extension (?stars=N); never shown, only stored
       var stars = parseInt(new URLSearchParams(location.search).get("stars") || "", 10);
-      if (stars >= 1 && stars <= 5) {
-        var chip = document.getElementById("rating-chip");
-        chip.querySelector("span").textContent = "You rated us " + stars + " out of 5";
-        chip.style.display = "flex";
-      } else {
-        stars = "";
-      }
+      if (!(stars >= 1 && stars <= 5)) stars = "";
 
       // Show the text input when "Other" is selected
       form.addEventListener("change", function (e) {
@@ -492,6 +470,11 @@
 
         if (!selectedReason()) {
           showError("Please pick what went wrong.");
+          return;
+        }
+        if (selectedReason() === "Other" && !otherText.value.trim()) {
+          showError("Tell us briefly what went wrong.");
+          otherText.focus();
           return;
         }
         if (email.value && !email.checkValidity()) {
