@@ -79,6 +79,16 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    // Owner's own visits: open any page once with ?internal=1 to mark this
+    // browser; GA4's "Internal Traffic" data filter excludes traffic_type=internal.
+    (function () {
+      try {
+        if (/[?&]internal=1/.test(location.search) || localStorage.getItem("rtf2pdf-internal") === "1") {
+          localStorage.setItem("rtf2pdf-internal", "1");
+          gtag('set', { traffic_type: 'internal' });
+        }
+      } catch (e) {}
+    })();
     gtag('config', 'G-FK16L10K7N');
   </script>
 
