@@ -315,7 +315,12 @@
     .module .panel img { width: 100%; max-width: 400px; height: auto; }
     .module h3 { font-size: 1.375rem; margin: 0 0 10px; }
     .module p { color: var(--muted); max-width: 42ch; }
-    .module .panel .theme-pair { color: var(--ink); display: flex; gap: 32px; }
+    /* Fixed light/dark halves so the pair reads as "both themes" in either
+       theme; site tokens are deliberately not used here. */
+    .module .panel .theme-pair { display: flex; width: 100%; height: clamp(64px, 10vw, 84px); border-radius: 8px; overflow: hidden; }
+    .theme-pair .theme-half { flex: 1; display: flex; align-items: center; justify-content: center; }
+    .theme-pair .theme-half-light { background: #F1F1EE; color: #1D1C1A; }
+    .theme-pair .theme-half-dark { background: #131316; color: #F1F2F4; }
     .module-wide { grid-template-columns: 1fr; }
     .module-wide .panel { padding: 10px; }
     .module-wide .panel img { width: 100%; max-width: none; }
@@ -470,7 +475,7 @@
         <a class="topbar-cta" href="#top">Download</a>
         <a href="#how">How it works</a>
         <a href="#features">Features</a>
-        <a href="#privacy">Privacy</a>
+        <a href="privacy.html">Privacy</a>
         <a href="#faq">FAQ</a>
         <a href="guides/">Guides</a>
         <button class="theme-toggle" type="button" aria-label="Switch to dark theme">
@@ -551,8 +556,12 @@
         <div class="module">
           <div class="panel reveal">
             <span class="theme-pair" aria-hidden="true">
-              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+              <span class="theme-half theme-half-dark">
+                <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+              </span>
+              <span class="theme-half theme-half-light">
+                <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+              </span>
             </span>
           </div>
           <div>
@@ -660,7 +669,7 @@
       <nav class="footer-menu" aria-label="Footer" data-stagger>
         <a class="reveal" href="#how">How it works</a>
         <a class="reveal" href="#features">Features</a>
-        <a class="reveal" href="#privacy">Privacy</a>
+        <a class="reveal" href="privacy.html">Privacy</a>
         <a class="reveal" href="#faq">Questions</a>
         <a class="reveal" href="guides/">Guides</a>
         <a class="reveal" href="https://chromewebstore.google.com/detail/rtf-to-pdf/pobhkhkiocaphogjeglealncldfdcall" data-install="footer">Chrome Web Store</a>
@@ -721,7 +730,7 @@
         if (href.charAt(0) === "#") {
           gtag("event", "navigate", { target: href.slice(1) || "top", source: a.closest(".footer") ? "footer" : "topbar" });
         } else if (href.indexOf("privacy.html") === 0) {
-          gtag("event", "navigate", { target: "policy", source: a.closest(".privacy-card") ? "privacy_card" : "footer" });
+          gtag("event", "navigate", { target: "policy", source: a.closest(".privacy-card") ? "privacy_card" : a.closest(".topnav") ? "topbar" : "footer" });
         } else if (href.indexOf("mailto:") === 0) {
           gtag("event", "contact_click");
         }

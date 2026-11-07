@@ -239,9 +239,11 @@
       font-size: 0.9375rem;
       line-height: 1.5;
     }
+    .table-hint { display: none; color: var(--muted); font-size: 0.8125rem; margin: 8px 0 0; }
     /* Wide comparison tables scroll horizontally on narrow screens */
     @media (max-width: 640px) {
       table { display: block; overflow-x: auto; }
+      .table-hint { display: block; }
     }
     th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); }
     th { font-weight: 600; border-bottom-width: 2px; }
@@ -345,6 +347,7 @@
           <tr><td>Still evolving</td><td>No — spec frozen since 2008</td><td>No — replaced by DOCX</td><td>Yes</td><td>Yes</td></tr>
         </tbody>
       </table>
+      <p class="table-hint" aria-hidden="true">Swipe sideways to see the whole table</p>
 
       <h2>RTF — the translator</h2>
       <p>Rich Text Format exists so that formatted documents survive the trip between different programs and platforms. It is plain text with formatting spelled out, which makes it universally readable and slightly heavier than DOC. Its specification has not changed since version 1.9.1 in 2008 — and that stability is the feature. You meet RTF today mostly as an <em>output</em> of old systems and as an <em>input</em> everything still accepts.</p>

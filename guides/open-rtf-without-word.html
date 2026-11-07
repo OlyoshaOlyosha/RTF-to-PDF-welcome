@@ -239,9 +239,11 @@
       font-size: 0.9375rem;
       line-height: 1.5;
     }
+    .table-hint { display: none; color: var(--muted); font-size: 0.8125rem; margin: 8px 0 0; }
     /* Wide comparison tables scroll horizontally on narrow screens */
     @media (max-width: 640px) {
       table { display: block; overflow-x: auto; }
+      .table-hint { display: block; }
     }
     th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); }
     th { font-weight: 600; border-bottom-width: 2px; }
@@ -365,6 +367,7 @@
           <tr><td>Word Online</td><td>Free</td><td>No</td><td>Microsoft account holders</td></tr>
         </tbody>
       </table>
+      <p class="table-hint" aria-hidden="true">Swipe sideways to see the whole table</p>
 
       <h2>If you only need to read or share it</h2>
       <p>Often the RTF file is not the goal — a readable, unchangeable copy is. In that case converting it to PDF is simpler than installing a word processor: the free <a href="https://chromewebstore.google.com/detail/rtf-to-pdf/pobhkhkiocaphogjeglealncldfdcall" target="_blank" rel="noopener">RTF to PDF extension for Chrome</a> turns the file into a PDF on your device, with the formatting intact and nothing uploaded. PDFs open on every phone, tablet, and computer ever made.</p>
