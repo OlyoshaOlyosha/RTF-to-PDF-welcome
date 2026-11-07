@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guides: RTF files, formats, and conversion | RTF to PDF</title>
+  <meta name="description" content="Plain-English guides to the RTF format: what an RTF file is, how to open it without Word, how to convert it to PDF without uploading, and how RTF, DOC, DOCX and PDF differ.">
+  <link rel="canonical" href="https://rtf2pdf.app/guides/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="RTF to PDF">
+  <meta property="og:title" content="Guides: RTF files, formats, and conversion">
+  <meta property="og:description" content="Plain-English guides to the RTF format: open it, convert it, compare it.">
+  <meta property="og:url" content="https://rtf2pdf.app/guides/">
+  <meta property="og:image" content="https://rtf2pdf.app/images/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="../images/icon-128.png">
+  <!-- Fonts self-hosted (latin subset), no third-party CDN dependency -->
+  <link rel="preload" href="../fonts/archivo-black-400.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK16L10K7N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    // Owner's own visits: open any page once with ?internal=1 to mark this
+    // browser; GA4's "Internal Traffic" data filter excludes traffic_type=internal.
+    (function () {
+      try {
+        if (/[?&]internal=1/.test(location.search) || localStorage.getItem("rtf2pdf-internal") === "1") {
+          localStorage.setItem("rtf2pdf-internal", "1");
+          gtag('set', { traffic_type: 'internal' });
+        }
+      } catch (e) {}
+    })();
+    gtag('config', 'G-FK16L10K7N');
+  </script>
+
+  <style>
+    /* ===== Self-hosted webfonts (latin) ===== */
+    @font-face {
+      font-family: "Archivo Black";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("../fonts/archivo-black-400.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Libre Franklin";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("../fonts/libre-franklin-400.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Libre Franklin";
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url("../fonts/libre-franklin-600.woff2") format("woff2");
+    }
+
+    /* Tokens, same system as the rest of the site */
+    :root {
+      --bg: #F1F1EE;
+      --surface: #FAFAF7;
+      --ink: #1D1C1A;
+      --muted: #6D6A64;
+      --border: #D9D6CE;
+      --accent: #DC2626;
+      --accent-link: #B91C1C;
+      --font-display: "Archivo Black", "Arial Black", "Libre Franklin", sans-serif;
+      --font-text: "Libre Franklin", -apple-system, "Segoe UI", Roboto, sans-serif;
+      --frame: clamp(16px, 2.5vw, 40px);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #131316;
+        --surface: #1D1F23;
+        --ink: #F1F2F4;
+        --muted: #9BA1A9;
+        --border: #2E3138;
+        --accent-link: #F87171;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scrollbar-gutter: stable; }
+    ::selection { background: rgb(220 38 38 / 0.25); }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: var(--font-text);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+    a { color: var(--accent-link); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    .page-head {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 20px var(--frame) 0;
+      width: 100%;
+    }
+    .home-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-display); font-weight: 400; letter-spacing: -0.02em;
+      font-size: 1.125rem; color: var(--ink); text-decoration: none;
+      min-height: 44px;
+    }
+    .home-link img { border-radius: 7px; }
+    .home-link:hover span { text-decoration: underline; text-underline-offset: 4px; }
+
+    main { flex: 1; }
+    .wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 40px var(--frame) 24px;
+    }
+    .crumb { font-size: 0.875rem; color: var(--muted); }
+    .crumb a { color: var(--muted); }
+    .crumb a:hover { color: var(--accent-link); }
+    h1 {
+      margin: 12px 0 10px;
+      font-family: var(--font-display); font-weight: 400;
+      font-size: clamp(1.875rem, 1.4rem + 2vw, 2.75rem);
+      letter-spacing: -0.02em; line-height: 1.12;
+    }
+    .lead { margin: 0 0 36px; color: var(--muted); }
+
+    .guide-list { display: flex; flex-direction: column; gap: 24px; margin: 0 0 8px; }
+    .guide-card {
+      display: block;
+      padding: 20px 24px;
+      background: var(--surface);
+      border-radius: 1rem;
+      color: inherit;
+    }
+    .guide-card:hover { text-decoration: none; }
+    .guide-card h2 {
+      margin: 0 0 6px;
+      font-family: var(--font-display); font-weight: 400;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em; line-height: 1.25;
+    }
+    .guide-card:hover h2 { color: var(--accent-link); }
+    .guide-card p { margin: 0; color: var(--muted); font-size: 0.9375rem; }
+    .guide-card .meta { display: block; margin-top: 8px; font-size: 0.875rem; color: var(--muted); }
+
+    .next {
+      margin: 40px 0 0;
+      font-size: 0.9375rem;
+      color: var(--muted);
+    }
+    footer.site-foot {
+      padding: 32px var(--frame) 40px;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+    footer.site-foot a { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header class="page-head">
+    <a class="home-link" href="/">
+      <img src="../images/icon-128.png" alt="" width="28" height="28">
+      <span>RTF to PDF</span>
+    </a>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <p class="crumb"><a href="/">Home</a> / Guides</p>
+      <h1>Guides</h1>
+      <p class="lead">Plain-English guides to the RTF format: what it is, how to open it, how to convert it, and how it compares to the formats around it.</p>
+
+      <div class="guide-list">
+        <a class="guide-card" href="what-is-rtf.html">
+          <h2>What Is an RTF File?</h2>
+          <p>What Rich Text Format actually is, what the file looks like inside, and how to open, edit, or convert it.</p>
+          <span class="meta">4 min read</span>
+        </a>
+        <a class="guide-card" href="rtf-to-pdf-offline.html">
+          <h2>How to Convert RTF to PDF Without Uploading It Anywhere</h2>
+          <p>Offline conversion in the browser, in Word, or in LibreOffice, compared with online converters.</p>
+          <span class="meta">3 min read</span>
+        </a>
+        <a class="guide-card" href="open-rtf-without-word.html">
+          <h2>How to Open an RTF File Without Microsoft Word</h2>
+          <p>Free options on Windows, Mac, Linux, and phones, compared in one table.</p>
+          <span class="meta">3 min read</span>
+        </a>
+        <a class="guide-card" href="rtf-vs-doc-vs-docx-vs-pdf.html">
+          <h2>RTF vs DOC vs DOCX vs PDF</h2>
+          <p>The four formats in one comparison table: who made them, what they store, and when to use each.</p>
+          <span class="meta">3 min read</span>
+        </a>
+      </div>
+
+      <p class="next">Just need the conversion? <a href="https://chromewebstore.google.com/detail/rtf-to-pdf/pobhkhkiocaphogjeglealncldfdcall" target="_blank" rel="noopener">Get the free extension</a> or head back to the <a href="/">homepage</a>.</p>
+    </div>
+  </main>
+
+  <footer class="site-foot">
+    <a href="/">rtf2pdf.app</a> · <a href="../privacy.html">Privacy policy</a>
+  </footer>
+</body>
+</html>

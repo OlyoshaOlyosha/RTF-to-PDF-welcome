@@ -11,6 +11,7 @@
 
 ## Guides
 
+- [Guides index](https://rtf2pdf.app/guides/): all RTF guides in one place
 - [What Is an RTF File?](https://rtf2pdf.app/guides/what-is-rtf.html): what the Rich Text Format is, what's inside the file, how to open and edit it
 - [How to Convert RTF to PDF Without Uploading It](https://rtf2pdf.app/guides/rtf-to-pdf-offline.html): offline conversion methods compared — browser extension vs Word vs LibreOffice vs online converters
 - [How to Open an RTF File Without Microsoft Word](https://rtf2pdf.app/guides/open-rtf-without-word.html): free options on Windows, Mac, Linux, and mobile
