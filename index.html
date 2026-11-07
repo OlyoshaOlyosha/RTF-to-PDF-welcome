@@ -422,15 +422,6 @@
       .js .reveal { opacity: 1; translate: 0 0; transition: none; }
     }
 
-    /* ===== Theme fade, mirrored from the extension popup: themed
-       colors ease as one unit at 200ms. The .reveal rule above keeps
-       winning for entrances (higher specificity replaces the whole
-       transition value); once an entrance settles, its stagger delay
-       is reset so theme fades are never held back. ===== */
-    @media (prefers-reduced-motion: no-preference) {
-      *, *::before, *::after { transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease; }
-    }
-
     /* ===== Stacked layout ===== */
     @media (max-width: 1023px) {
       .steps { grid-template-columns: 1fr; gap: 36px; }
