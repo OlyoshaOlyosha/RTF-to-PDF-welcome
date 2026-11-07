@@ -150,8 +150,15 @@
       :root:not([data-theme="light"]):not([data-theme="dark"]) .theme-toggle .icon-sun { opacity: 1; transform: none; }
       :root:not([data-theme="light"]):not([data-theme="dark"]) .theme-toggle .icon-moon { opacity: 0; transform: rotate(-90deg); }
     }
+    /* Theme switch fade: active only while html.theme-fading is set by the
+       click handler below (~150ms). Outside the switch everything is instant. */
     @media (prefers-reduced-motion: no-preference) {
-      *, *::before, *::after { transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease; }
+      html.theme-fading *,
+      html.theme-fading *::before,
+      html.theme-fading *::after {
+        transition: background-color 100ms ease, color 100ms ease, border-color 100ms ease !important;
+        transition-delay: 0ms !important;
+      }
       .theme-toggle svg { transition: opacity 0.3s ease, transform 0.3s ease; }
     }
 
@@ -261,7 +268,12 @@
       themeBtn.setAttribute("aria-label", currentTheme() === "dark" ? "Switch to light theme" : "Switch to dark theme");
       themeBtn.addEventListener("click", function () {
         var next = currentTheme() === "dark" ? "light" : "dark";
-        document.documentElement.dataset.theme = next;
+        var root = document.documentElement;
+        // Scoped fade: colors transition only during the switch window.
+        root.classList.add("theme-fading");
+        clearTimeout(themeBtn._fadeTimer);
+        themeBtn._fadeTimer = setTimeout(function () { root.classList.remove("theme-fading"); }, 150);
+        root.dataset.theme = next;
         themeBtn.setAttribute("aria-label", next === "dark" ? "Switch to light theme" : "Switch to dark theme");
         try { localStorage.setItem("rtf2pdf-theme", next); } catch (e) {}
         if (typeof gtag === "function") gtag("event", "theme_toggle", { to: next });

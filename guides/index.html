@@ -165,7 +165,7 @@
       html.theme-fading *,
       html.theme-fading *::before,
       html.theme-fading *::after {
-        transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease !important;
+        transition: background-color 100ms ease, color 100ms ease, border-color 100ms ease !important;
         transition-delay: 0ms !important;
       }
     }
@@ -284,7 +284,7 @@
         var root = document.documentElement;
         root.classList.add("theme-fading");
         clearTimeout(applyTheme._fadeTimer);
-        applyTheme._fadeTimer = setTimeout(function () { root.classList.remove("theme-fading"); }, 240);
+        applyTheme._fadeTimer = setTimeout(function () { root.classList.remove("theme-fading"); }, 150);
         root.dataset.theme = next;
         themeBtn.setAttribute("aria-label", next === "dark" ? "Switch to light theme" : "Switch to dark theme");
         try { localStorage.setItem("rtf2pdf-theme", next); } catch (e) {}
