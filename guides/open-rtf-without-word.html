@@ -114,8 +114,16 @@
       --font-text: "Libre Franklin", -apple-system, "Segoe UI", Roboto, sans-serif;
       --frame: clamp(16px, 2.5vw, 40px);
     }
+    [data-theme="dark"] {
+      --bg: #131316;
+      --surface: #1D1F23;
+      --ink: #F1F2F4;
+      --muted: #9BA1A9;
+      --border: #2E3138;
+      --accent-link: #F87171;
+    }
     @media (prefers-color-scheme: dark) {
-      :root {
+      :root:not([data-theme="light"]) {
         --bg: #131316;
         --surface: #1D1F23;
         --ink: #F1F2F4;
