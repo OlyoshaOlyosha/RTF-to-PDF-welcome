@@ -2,6 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script>
+    // Theme before first paint: stored choice wins, else system preference.
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("rtf2pdf-theme"); } catch (e) {}
+      if (t === "light" || t === "dark") {
+        document.documentElement.dataset.theme = t;
+      }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>How to Open an RTF File Without Microsoft Word | RTF to PDF</title>
   <meta name="description" content="No Microsoft Word? Open RTF files with LibreOffice, Google Docs, Apple TextEdit, Word Online, or on a phone — free options for every system, listed and compared.">
@@ -139,6 +149,9 @@
       margin: 0 auto;
       padding: 20px var(--frame) 0;
       width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
     .home-link {
       display: inline-flex; align-items: center; gap: 10px;
@@ -148,6 +161,34 @@
     }
     .home-link img { border-radius: 7px; }
     .home-link:hover span { text-decoration: underline; text-underline-offset: 4px; }
+    .home-link img { border-radius: 7px; }
+    .home-link:hover span { text-decoration: underline; text-underline-offset: 4px; }
+    .theme-toggle {
+      background: none; border: 0; cursor: pointer;
+      width: 44px; height: 44px; flex: none;
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--muted); position: relative;
+    }
+    .theme-toggle:hover { color: var(--ink); }
+    .theme-toggle svg { position: absolute; transition: opacity 0.3s ease, transform 0.3s ease; }
+    .theme-toggle .icon-sun { opacity: 0; transform: rotate(90deg); }
+    [data-theme="dark"] .theme-toggle .icon-sun { opacity: 1; transform: none; }
+    [data-theme="dark"] .theme-toggle .icon-moon { opacity: 0; transform: rotate(-90deg); }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]):not([data-theme="dark"]) .theme-toggle .icon-sun { opacity: 1; transform: none; }
+      :root:not([data-theme="light"]):not([data-theme="dark"]) .theme-toggle .icon-moon { opacity: 0; transform: rotate(-90deg); }
+    }
+    /* Theme switch fade: colors ease as one unit only while the switch is
+       in flight (html.theme-fading is set by the script below); hover and
+       everything outside the switch stay instant. */
+    @media (prefers-reduced-motion: no-preference) {
+      html.theme-fading *,
+      html.theme-fading *::before,
+      html.theme-fading *::after {
+        transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease !important;
+        transition-delay: 0ms !important;
+      }
+    }
 
     main { flex: 1; }
     .article {
@@ -267,6 +308,10 @@
       <img src="../images/icon-128.png" alt="" width="28" height="28">
       <span>RTF to PDF</span>
     </a>
+    <button class="theme-toggle" type="button" aria-label="Switch to dark theme">
+      <svg class="icon-moon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      <svg class="icon-sun" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+    </button>
   </header>
 
   <main>
@@ -352,5 +397,33 @@
   <footer class="site-foot">
     <a href="/">rtf2pdf.app</a> · <a href="../privacy.html">Privacy policy</a>
   </footer>
+
+  <script>
+    (function () {
+      "use strict";
+      // Same theme behavior as the landing: stored choice wins, else system
+      // preference; colors ease only while a switch is in flight.
+      var themeBtn = document.querySelector(".theme-toggle");
+      function currentTheme() {
+        var t = document.documentElement.dataset.theme;
+        if (t === "light" || t === "dark") return t;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      function applyTheme(next) {
+        var root = document.documentElement;
+        root.classList.add("theme-fading");
+        clearTimeout(applyTheme._fadeTimer);
+        applyTheme._fadeTimer = setTimeout(function () { root.classList.remove("theme-fading"); }, 240);
+        root.dataset.theme = next;
+        themeBtn.setAttribute("aria-label", next === "dark" ? "Switch to light theme" : "Switch to dark theme");
+        try { localStorage.setItem("rtf2pdf-theme", next); } catch (e) {}
+        if (typeof gtag === "function") gtag("event", "theme_toggle", { to: next });
+      }
+      themeBtn.setAttribute("aria-label", currentTheme() === "dark" ? "Switch to light theme" : "Switch to dark theme");
+      themeBtn.addEventListener("click", function () {
+        applyTheme(currentTheme() === "dark" ? "light" : "dark");
+      });
+    })();
+  </script>
 </body>
 </html>
