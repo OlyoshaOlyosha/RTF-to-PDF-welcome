@@ -422,6 +422,20 @@
       .js .reveal { opacity: 1; translate: 0 0; transition: none; }
     }
 
+    /* ===== Theme switch fade: active only while html.theme-fading is set
+       (added by applyTheme, removed ~240ms later). Colors move as one unit
+       and stagger delays from the reveal system are flattened for the
+       moment of the switch, so link colors don't trail behind the page.
+       Outside the switch everything, including hover, stays instant. ===== */
+    @media (prefers-reduced-motion: no-preference) {
+      html.theme-fading *,
+      html.theme-fading *::before,
+      html.theme-fading *::after {
+        transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease !important;
+        transition-delay: 0ms !important;
+      }
+    }
+
     /* ===== Stacked layout ===== */
     @media (max-width: 1023px) {
       .steps { grid-template-columns: 1fr; gap: 36px; }
@@ -675,7 +689,13 @@
         return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       }
       function applyTheme(t) {
-        document.documentElement.dataset.theme = t;
+        // Ease themed colors only while a toggle is in flight: the class is
+        // added here and removed right after, so hover states stay instant.
+        var root = document.documentElement;
+        root.classList.add("theme-fading");
+        clearTimeout(applyTheme._fadeTimer);
+        applyTheme._fadeTimer = setTimeout(function () { root.classList.remove("theme-fading"); }, 240);
+        root.dataset.theme = t;
         themeBtn.setAttribute("aria-label", t === "dark" ? "Switch to light theme" : "Switch to dark theme");
         try { localStorage.setItem("rtf2pdf-theme", t); } catch (e) {}
       }
