@@ -246,7 +246,12 @@
     th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); }
     th { font-weight: 600; border-bottom-width: 2px; }
 
-    /* Route figure: offline vs online conversion path, built in HTML, no images */
+    /* Route figure: offline vs online conversion path, built in HTML, no images.
+       Green marks the safe local route (same pair the survey pages use). */
+    :root { --ok: #16A34A; }
+    @media (prefers-color-scheme: dark) {
+      :root { --ok: #4ADE80; }
+    }
     .route-fig { margin: 24px 0 28px; }
     .flow-row {
       display: flex;
@@ -280,6 +285,13 @@
       background: none;
     }
     .flow-node-server small { color: var(--accent-link); }
+    .flow-row-safe .flow-node-mid {
+      border-color: var(--ok);
+    }
+    .flow-row-safe .flow-node-mid small { color: var(--ok); font-weight: 600; }
+    .flow-row-safe .flow-arrow { color: var(--ok); }
+    .flow-cap-ok strong { color: var(--ok); }
+    .flow-cap-bad strong { color: var(--accent-link); }
     .flow-arrow {
       align-self: center;
       flex: 0 0 auto;
@@ -377,14 +389,14 @@
       <p>Most "RTF to PDF" results you find are online converters, and they all work the same way: you hand your document to a stranger's server, wait for it to come back, and hope the deletion policy means what it says. For a recipe that is fine. For a contract, an invoice, a medical letter, or anything with a name on it, it is an avoidable risk — because PDF conversion can happen entirely on your own device. Here are three ways, from fastest to most familiar.</p>
 
       <figure class="route-fig">
-        <div class="flow-row" role="img" aria-label="Offline route: the RTF file converts in your browser to a PDF without leaving your computer">
+        <div class="flow-row flow-row-safe" role="img" aria-label="Offline route: the RTF file converts in your browser to a PDF without leaving your computer">
           <span class="flow-node">RTF file</span>
           <svg class="flow-arrow" width="28" height="14" viewBox="0 0 28 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24"/><path d="m20 2 5 5-5 5"/></svg>
-          <span class="flow-node">Your browser<small>converts on your device</small></span>
+          <span class="flow-node flow-node-mid">Your browser<small>converts on your device</small></span>
           <svg class="flow-arrow" width="28" height="14" viewBox="0 0 28 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24"/><path d="m20 2 5 5-5 5"/></svg>
           <span class="flow-node">PDF</span>
         </div>
-        <p class="flow-cap"><strong>Offline:</strong> the file never leaves your computer.</p>
+        <p class="flow-cap flow-cap-ok"><strong>Offline:</strong> the file never leaves your computer.</p>
         <div class="flow-row" role="img" aria-label="Online route: the RTF file is uploaded to a stranger's server, converted there, and sent back as a PDF">
           <span class="flow-node">RTF file</span>
           <svg class="flow-arrow" width="28" height="14" viewBox="0 0 28 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24"/><path d="m20 2 5 5-5 5"/></svg>
@@ -392,7 +404,7 @@
           <svg class="flow-arrow" width="28" height="14" viewBox="0 0 28 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24"/><path d="m20 2 5 5-5 5"/></svg>
           <span class="flow-node">PDF</span>
         </div>
-        <p class="flow-cap"><strong>Online converter:</strong> the document travels to somebody else's computer and back.</p>
+        <p class="flow-cap flow-cap-bad"><strong>Online converter:</strong> the document travels to somebody else's computer and back.</p>
       </figure>
 
       <h2>Method 1: in your browser, with a free extension</h2>
