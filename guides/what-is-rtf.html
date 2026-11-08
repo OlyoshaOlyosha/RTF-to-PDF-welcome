@@ -269,6 +269,54 @@
     }
 
     .faq h2 { margin-top: 48px; }
+
+    /* "Inside an RTF file" figure: two panes built in HTML, no images */
+    .rtf-inside {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0 16px;
+    }
+    @media (max-width: 640px) {
+      .rtf-inside { grid-template-columns: 1fr; }
+    }
+    .rtf-pane {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      overflow: hidden;
+      margin: 0;
+    }
+    .rtf-pane-label {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .rtf-pane-body { padding: 20px 16px; }
+    .rtf-doc-body { font-size: 1.0625rem; line-height: 1.6; }
+    .rtf-raw-body {
+      margin: 0;
+      font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+      font-size: 0.8125rem;
+      line-height: 1.7;
+      color: var(--ink);
+      overflow-x: auto;
+      white-space: pre;
+    }
+    /* Formatting instructions highlighted inside the raw pane */
+    .rtf-raw-body .instr { color: var(--accent-link); }
+    .rtf-inside figcaption {
+      margin: 0;
+      padding: 10px 16px;
+      border-top: 1px solid var(--border);
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+    @media (max-width: 640px) {
+      .rtf-raw-body { font-size: 0.75rem; }
+    }
     .faq details { margin-bottom: 4px; }
     .faq summary {
       padding: 14px 0;
@@ -335,8 +383,20 @@
       <p>The idea behind the name: plain text files store only characters, while <em>rich</em> text stores characters <em>plus</em> their formatting — bold, italics, font sizes, colors, margins, tables, and embedded images.</p>
 
       <h2>What an RTF file looks like inside</h2>
-      <p>Here is the part that surprises people: an RTF file is not program code — it is the document itself, written out in plain text. Open one in a simple editor like Notepad and you will see the words of your document mixed with readable formatting instructions, like this:</p>
-      <p><code>{\rtf1\ansi Hello \b world\b0}</code> — this says "Hello" in normal text followed by "world" in bold: <code>\b</code> switches bold on, <code>\b0</code> switches it off. Every formatting instruction is spelled out in plain text, which is exactly why the format is so portable: any program can parse it, on any platform, without needing the software that created it.</p>
+      <p>Here is the part that surprises people: an RTF file is not program code — it is the document itself, written out in plain text. The same tiny document, first as you normally see it and then as a simple editor like Notepad shows it:</p>
+      <div class="rtf-inside">
+        <figure class="rtf-pane">
+          <div class="rtf-pane-label">What you see in Word</div>
+          <div class="rtf-pane-body rtf-doc-body">Hello <strong>world</strong></div>
+          <figcaption>The finished look — bold text rendered as bold.</figcaption>
+        </figure>
+        <figure class="rtf-pane">
+          <div class="rtf-pane-label">The same file in Notepad</div>
+          <pre class="rtf-pane-body rtf-raw-body"><span class="instr">{\rtf1\ansi</span> Hello <span class="instr">\b</span> world<span class="instr">\b0</span><span class="instr">}</span></pre>
+          <figcaption>The same words, spelled out in plain text.</figcaption>
+        </figure>
+      </div>
+      <p>Everything in red here is a formatting instruction: <code>\b</code> switches bold on, <code>\b0</code> switches it off. Every instruction is spelled out in plain text, which is exactly why the format is so portable: any program can parse it, on any platform, without needing the software that created it.</p>
       <p>This is also why RTF files are larger than their .doc equivalents: the same document spelled out in longhand simply takes more bytes.</p>
 
       <h2>How to open an RTF file</h2>
