@@ -232,6 +232,42 @@
       border-radius: 6px;
       padding: 1px 6px;
     }
+    /* App chooser cards: icon + name + when to pick it */
+    .app-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 24px 0 8px;
+    }
+    @media (max-width: 860px) { .app-cards { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px) { .app-cards { grid-template-columns: 1fr; } }
+    .app-card {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 16px;
+      background: var(--surface);
+      border-radius: 1rem;
+      color: inherit;
+      text-decoration: none;
+    }
+    a.app-card:hover strong { color: var(--accent-link); }
+    .app-card .app-tag {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .app-card .app-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-link);
+    }
+    .app-card strong { font-size: 0.9375rem; color: var(--ink); }
+    .app-card p { margin: 0; font-size: 0.8125rem; line-height: 1.5; color: var(--muted); }
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -331,6 +367,39 @@
       <p class="byline">November 7, 2026 · 3 min read</p>
 
       <p>Someone sent you a <code>.rtf</code> file, you don't have Microsoft Word. You don't need it. RTF has been a universal exchange format since 1987, so practically every operating system has at least one free way to open it. Pick by what you want to do: read it, edit it, or turn it into a PDF.</p>
+
+      <div class="app-cards">
+        <div class="app-card">
+          <span class="app-tag">The standard choice</span>
+          <span class="app-head"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><strong>LibreOffice Writer</strong></span>
+          <p>Free desktop app for full editing and PDF export. Windows, Mac, and Linux.</p>
+        </div>
+        <div class="app-card">
+          <span class="app-tag">Older PCs</span>
+          <span class="app-head"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg><strong>WordPad</strong></span>
+          <p>Came with Windows 10 and older. Removed from Windows 11 in the 24H2 update.</p>
+        </div>
+        <div class="app-card">
+          <span class="app-tag">No install</span>
+          <span class="app-head"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg><strong>Word Online</strong></span>
+          <p>In the browser, free with a Microsoft account. Fine for everyday documents.</p>
+        </div>
+        <div class="app-card">
+          <span class="app-tag">Mac</span>
+          <span class="app-head"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M2 21h20"/></svg><strong>TextEdit &amp; Pages</strong></span>
+          <p>TextEdit is already on every Mac. Pages, free from the App Store, for real editing.</p>
+        </div>
+        <div class="app-card">
+          <span class="app-tag">Any device</span>
+          <span class="app-head"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg><strong>Google Docs</strong></span>
+          <p>Upload the file to Google Drive and open it anywhere; editing from any device.</p>
+        </div>
+        <a class="app-card" href="https://chromewebstore.google.com/detail/rtf-to-pdf/pobhkhkiocaphogjeglealncldfdcall" target="_blank" rel="noopener">
+          <span class="app-tag">For sharing</span>
+          <span class="app-head"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="M7 10l5 5 5-5"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg><strong>RTF to PDF extension</strong></span>
+          <p>Just need to read or share the file? Convert it to a PDF in two clicks, free.</p>
+        </a>
+      </div>
 
       <h2>On Windows</h2>
       <ul>
