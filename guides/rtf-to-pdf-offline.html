@@ -246,6 +246,52 @@
     th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); }
     th { font-weight: 600; border-bottom-width: 2px; }
 
+    /* Route figure: offline vs online conversion path, built in HTML, no images */
+    .route-fig { margin: 24px 0 28px; }
+    .flow-row {
+      display: flex;
+      align-items: stretch;
+      gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 16px 14px;
+      margin: 0 0 12px;
+    }
+    .flow-node {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 2px;
+      padding: 12px 8px;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 0.75rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .flow-node small { font-weight: 400; color: var(--muted); }
+    .flow-node-server {
+      border: 1.5px dashed var(--accent);
+      background: none;
+    }
+    .flow-node-server small { color: var(--accent-link); }
+    .flow-arrow {
+      align-self: center;
+      flex: 0 0 auto;
+      color: var(--muted);
+    }
+    .flow-cap { margin: 0 0 12px; font-size: 0.8125rem; color: var(--muted); }
+    .flow-cap strong { color: var(--ink); }
+    @media (max-width: 560px) {
+      .flow-row { flex-direction: column; gap: 6px; }
+      .flow-arrow { transform: rotate(90deg); padding: 2px 0; }
+    }
+
     .cta-box {
       margin: 40px 0;
       padding: 24px;
@@ -329,6 +375,25 @@
       <p class="byline">November 7, 2026 · 3 min read</p>
 
       <p>Most "RTF to PDF" results you find are online converters, and they all work the same way: you hand your document to a stranger's server, wait for it to come back, and hope the deletion policy means what it says. For a recipe that is fine. For a contract, an invoice, a medical letter, or anything with a name on it, it is an avoidable risk — because PDF conversion can happen entirely on your own device. Here are three ways, from fastest to most familiar.</p>
+
+      <figure class="route-fig">
+        <div class="flow-row" role="img" aria-label="Offline route: the RTF file converts in your browser to a PDF without leaving your computer">
+          <span class="flow-node">RTF file</span>
+          <svg class="flow-arrow" width="28" height="14" viewBox="0 0 28 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24"/><path d="m20 2 5 5-5 5"/></svg>
+          <span class="flow-node">Your browser<small>converts on your device</small></span>
+          <svg class="flow-arrow" width="28" height="14" viewBox="0 0 28 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24"/><path d="m20 2 5 5-5 5"/></svg>
+          <span class="flow-node">PDF</span>
+        </div>
+        <p class="flow-cap"><strong>Offline:</strong> the file never leaves your computer.</p>
+        <div class="flow-row" role="img" aria-label="Online route: the RTF file is uploaded to a stranger's server, converted there, and sent back as a PDF">
+          <span class="flow-node">RTF file</span>
+          <svg class="flow-arrow" width="28" height="14" viewBox="0 0 28 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24"/><path d="m20 2 5 5-5 5"/></svg>
+          <span class="flow-node flow-node-server">Stranger's server<small>your document is uploaded, stored, processed</small></span>
+          <svg class="flow-arrow" width="28" height="14" viewBox="0 0 28 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24"/><path d="m20 2 5 5-5 5"/></svg>
+          <span class="flow-node">PDF</span>
+        </div>
+        <p class="flow-cap"><strong>Online converter:</strong> the document travels to somebody else's computer and back.</p>
+      </figure>
 
       <h2>Method 1: in your browser, with a free extension</h2>
       <p>The <a href="https://chromewebstore.google.com/detail/rtf-to-pdf/pobhkhkiocaphogjeglealncldfdcall" target="_blank" rel="noopener">RTF to PDF extension for Chrome</a> converts the file inside your browser:</p>

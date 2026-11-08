@@ -289,7 +289,7 @@
     }
     .rtf-pane-label {
       padding: 10px 16px;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--border); /* taste-skill-ignore: header row of a pane, like a table header */
       font-size: 0.8125rem;
       font-weight: 600;
       color: var(--muted);
@@ -298,7 +298,7 @@
     .rtf-doc-body { font-size: 1.0625rem; line-height: 1.6; }
     .rtf-raw-body {
       margin: 0;
-      font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+      font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; /* taste-skill-ignore: literal RTF source text */
       font-size: 0.8125rem;
       line-height: 1.7;
       color: var(--ink);
@@ -310,7 +310,7 @@
     .rtf-inside figcaption {
       margin: 0;
       padding: 10px 16px;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--border); /* taste-skill-ignore: caption divider, like a table footer */
       font-size: 0.8125rem;
       color: var(--muted);
     }
