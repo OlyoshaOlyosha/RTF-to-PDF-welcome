@@ -233,9 +233,9 @@
       padding: 1px 6px;
     }
     /* Verdict marks in the comparison table */
-    :root { --ok: #16A34A; }
+    :root { --ok: #166534; }
     @media (prefers-color-scheme: dark) {
-      :root { --ok: #4ADE80; }
+      :root:not([data-theme="light"]) { --ok: #4ADE80; }
     }
     .verdict { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
     .verdict { flex-wrap: wrap; }

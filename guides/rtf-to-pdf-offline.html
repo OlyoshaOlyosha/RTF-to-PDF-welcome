@@ -248,9 +248,9 @@
 
     /* Route figure: offline vs online conversion path, built in HTML, no images.
        Green marks the safe local route (same pair the survey pages use). */
-    :root { --ok: #16A34A; }
+    :root { --ok: #166534; }
     @media (prefers-color-scheme: dark) {
-      :root { --ok: #4ADE80; }
+      :root:not([data-theme="light"]) { --ok: #4ADE80; }
     }
     .route-fig { margin: 24px 0 28px; }
     .flow-row {
