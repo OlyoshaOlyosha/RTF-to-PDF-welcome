@@ -313,6 +313,44 @@
       display: flex; align-items: center; justify-content: center;
     }
     .module .panel img { width: 100%; max-width: 400px; height: auto; }
+    /* One-file vs batch download mock, built in HTML, no image */
+    .zip-demo { flex-direction: column; gap: 14px; width: 100%; max-width: 400px; }
+    .zip-case { display: flex; align-items: center; gap: 12px; width: 100%; }
+    .zip-files {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      min-width: 0;
+    }
+    .zip-file {
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: var(--bg);
+      border-radius: 6px;
+      padding: 5px 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .zip-file:last-child { border-bottom-right-radius: 0; } /* keep stack look tidy */
+    .zip-case .zip-arrow { flex: none; color: var(--muted); }
+    .zip-out {
+      flex: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 64px;
+      padding: 9px 14px;
+      border-radius: 8px;
+      font-family: var(--font-display);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      font-size: 0.9375rem;
+    }
+    .zip-out-pdf { background: var(--ink); color: var(--bg); }
+    .zip-out-zip { background: var(--accent); color: #fff; }
+    .zip-label { display: block; width: 100%; font-size: 0.75rem; color: var(--muted); margin-bottom: -6px; }
     .module h3 { font-size: 1.375rem; margin: 0 0 10px; }
     .module p { color: var(--muted); max-width: 42ch; }
     /* Fixed light/dark halves so the pair reads as "both themes" in either
@@ -540,7 +578,24 @@
           </div>
         </div>
         <div class="module">
-          <div class="panel reveal"><img src="images/popup-done.png" alt="A converted file with Download PDF and Clear buttons" width="400" height="216" loading="lazy"></div>
+          <div class="panel reveal zip-demo" role="img" aria-label="One file downloads as a PDF; a batch of several files downloads as a ZIP archive">
+            <span class="zip-label">One file</span>
+            <div class="zip-case">
+              <span class="zip-files"><span class="zip-file">document.rtf</span></span>
+              <svg class="zip-arrow" width="26" height="14" viewBox="0 0 26 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h22"/><path d="m18 2 5 5-5 5"/></svg>
+              <span class="zip-out zip-out-pdf">PDF</span>
+            </div>
+            <span class="zip-label">Several files</span>
+            <div class="zip-case">
+              <span class="zip-files">
+                <span class="zip-file">document.rtf</span>
+                <span class="zip-file">report.rtf</span>
+                <span class="zip-file">notes.rtf</span>
+              </span>
+              <svg class="zip-arrow" width="26" height="14" viewBox="0 0 26 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h22"/><path d="m18 2 5 5-5 5"/></svg>
+              <span class="zip-out zip-out-zip">ZIP</span>
+            </div>
+          </div>
           <div>
             <h3 class="reveal">One file — a PDF. Several — a ZIP</h3>
             <p class="reveal">Convert a single file and download its PDF. Queue several, and the extension bundles the whole batch into a ZIP archive for you. The queue and finished PDFs survive closing the popup.</p>
