@@ -22,6 +22,6 @@
 - Input format: `.rtf` only (not `.doc`/`.docx`).
 - Output: PDF with selectable, copyable text; fonts, colors, tables and images preserved.
 - Conversion is local: files never leave the device; works offline after install — nothing is uploaded or re-processed on a server.
-- Multiple files can be queued; the batch downloads as one ZIP archive (a single file downloads as a plain PDF).
+- Multiple files can be queued; the batch downloads as a ZIP archive (a single file downloads as a plain PDF).
 - Price: free, no watermarks or file limits, no account needed.
 - Contact: saiph.forge@gmail.com
