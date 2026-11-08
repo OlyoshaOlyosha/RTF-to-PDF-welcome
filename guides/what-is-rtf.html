@@ -335,7 +335,8 @@
       <p>The idea behind the name: plain text files store only characters, while <em>rich</em> text stores characters <em>plus</em> their formatting — bold, italics, font sizes, colors, margins, tables, and embedded images.</p>
 
       <h2>What an RTF file looks like inside</h2>
-      <p>Here is the part that surprises people: an RTF file is plain text. Open one in Notepad and you will see readable markup like <code>{\rtf1\ansi Hello \b world\b0}</code> — where <code>\b</code> switches bold on and <code>\b0</code> switches it off. Every formatting instruction is spelled out in text, which is exactly why the format is so portable: any program can parse it, on any platform, without needing the software that created it.</p>
+      <p>Here is the part that surprises people: an RTF file is not program code — it is the document itself, written out in plain text. Open one in a simple editor like Notepad and you will see the words of your document mixed with readable formatting instructions, like this:</p>
+      <p><code>{\rtf1\ansi Hello \b world\b0}</code> — this says "Hello" in normal text followed by "world" in bold: <code>\b</code> switches bold on, <code>\b0</code> switches it off. Every formatting instruction is spelled out in plain text, which is exactly why the format is so portable: any program can parse it, on any platform, without needing the software that created it.</p>
       <p>This is also why RTF files are larger than their .doc equivalents: the same document spelled out in longhand simply takes more bytes.</p>
 
       <h2>How to open an RTF file</h2>

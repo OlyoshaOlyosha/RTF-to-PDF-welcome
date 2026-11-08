@@ -51,11 +51,18 @@
       color: var(--foreground);
       background: var(--bg-body);
       -webkit-font-smoothing: antialiased;
+      /* Vertical centering on tall screens: auto margins center the block
+         when there is spare space and collapse to 0 when content overflows,
+         so nothing is ever unreachable. */
+      display: flex;
+      flex-direction: column;
+      min-height: 100svh;
     }
 
     .page {
       max-width: 560px;
-      margin: 0 auto;
+      margin: auto auto 0;
+      width: 100%;
     }
 
     .header {
@@ -97,6 +104,11 @@
       margin: 0 0 10px;
       font-size: 17px;
       font-weight: 600;
+    }
+    .lang-hint {
+      margin: -6px 0 10px;
+      font-size: 14px;
+      color: var(--muted-foreground);
     }
 
     /* ===== Radio cards ===== */
@@ -376,6 +388,7 @@
 
       <fieldset>
         <legend>What was the primary reason you uninstalled the extension?</legend>
+        <p class="lang-hint">You can write in any language — we'll translate.</p>
         <div class="choices" id="reason-choices">
           <label class="choice">
             <input type="radio" name="reason" value="I no longer need RTF conversion" required>
