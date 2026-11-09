@@ -225,6 +225,44 @@
       display: inline-flex; align-items: center;
     }
     .topnav .topbar-cta:hover { background: none; text-decoration: underline; text-underline-offset: 4px; }
+
+    /* Mobile menu: hamburger in the bar, dropdown panel under it */
+    .menu-btn {
+      display: none;
+      align-items: center; justify-content: center;
+      width: 44px; height: 44px; flex: none;
+      background: none; border: 0; cursor: pointer;
+      color: var(--muted);
+    }
+    .menu-btn:hover { color: var(--ink); }
+    .menu-btn .icon-x { display: none; }
+    .menu-btn[aria-expanded="true"] .icon-menu { display: none; }
+    .menu-btn[aria-expanded="true"] .icon-x { display: block; }
+    .mobile-menu a {
+      display: block;
+      min-height: 48px;
+      padding: 12px 20px;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .mobile-menu a:hover { background: var(--surface); }
+    @media (max-width: 899px) {
+      .menu-btn { display: inline-flex; }
+    }
+    .mobile-menu {
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      display: none;
+      flex-direction: column;
+      padding: 8px 0;
+      background: var(--bg);
+      box-shadow: 0 16px 28px rgb(0 0 0 / 0.12); /* taste-skill-ignore: the mobile menu is a real overlay */
+    }
+    .mobile-menu.open { display: flex; }
+    @media (min-width: 900px) {
+      .mobile-menu { display: none !important; }
+    }
     .theme-toggle {
       background: none; border: 0; cursor: pointer;
       width: 44px; height: 44px; flex: none;
@@ -516,11 +554,22 @@
         <a href="#faq">FAQ</a>
         <a href="privacy.html">Privacy</a>
         <a href="guides/">Guides</a>
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+          <svg class="icon-menu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+          <svg class="icon-x" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
         <button class="theme-toggle" type="button" aria-label="Switch to dark theme">
           <svg class="icon-moon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
           <svg class="icon-sun" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
         </button>
       </nav>
+    </div>
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#faq">FAQ</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="guides/">Guides</a>
     </div>
   </header>
 
@@ -770,6 +819,34 @@
         if (typeof gtag === "function") gtag("event", "theme_toggle", { to: next });
       });
 
+      // --- Mobile menu ---
+      var menuBtn = document.querySelector(".menu-btn");
+      var mobileMenu = document.getElementById("mobile-menu");
+      function closeMenu() {
+        mobileMenu.classList.remove("open");
+        mobileMenu.hidden = true;
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.setAttribute("aria-label", "Open menu");
+      }
+      menuBtn.addEventListener("click", function () {
+        var open = mobileMenu.classList.toggle("open");
+        mobileMenu.hidden = !open;
+        menuBtn.setAttribute("aria-expanded", String(open));
+        menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      });
+      mobileMenu.addEventListener("click", function (e) {
+        if (e.target.closest("a")) closeMenu();
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && mobileMenu.classList.contains("open")) {
+          closeMenu();
+          menuBtn.focus();
+        }
+      });
+      document.addEventListener("click", function (e) {
+        if (mobileMenu.classList.contains("open") && !e.target.closest(".topbar")) closeMenu();
+      });
+
       // --- Install clicks ---
       document.addEventListener("click", function (e) {
         var el = e.target.closest("[data-install]");
@@ -783,9 +860,9 @@
         if (!a || a.dataset.install || a.classList.contains("skip-link") || typeof gtag !== "function") return;
         var href = a.getAttribute("href") || "";
         if (href.charAt(0) === "#") {
-          gtag("event", "navigate", { target: href.slice(1) || "top", source: a.closest(".footer") ? "footer" : "topbar" });
+          gtag("event", "navigate", { target: href.slice(1) || "top", source: a.closest(".mobile-menu") ? "mobile_menu" : a.closest(".footer") ? "footer" : "topbar" });
         } else if (href.indexOf("privacy.html") === 0) {
-          gtag("event", "navigate", { target: "policy", source: a.closest(".privacy-card") ? "privacy_card" : a.closest(".topnav") ? "topbar" : "footer" });
+          gtag("event", "navigate", { target: "policy", source: a.closest(".privacy-card") ? "privacy_card" : a.closest(".mobile-menu") ? "mobile_menu" : a.closest(".topnav") ? "topbar" : "footer" });
         } else if (href.indexOf("mailto:") === 0) {
           gtag("event", "contact_click");
         }
