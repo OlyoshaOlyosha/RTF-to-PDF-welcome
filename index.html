@@ -464,23 +464,24 @@
       max-width: 34ch; line-height: 1.5; margin: 0 0 28px;
     }
 
-    /* ===== Footer ===== */
+    /* ===== Footer: the name returns at full width, one quiet row below ===== */
     .footer { background: var(--surface); padding: clamp(48px, 8vh, 88px) 0 32px; }
-    .footer-grid {
-      display: grid; grid-template-columns: 1fr auto;
-      gap: clamp(32px, 6vw, 96px); align-items: start;
+    .footer-name {
+      margin: 0 0 clamp(20px, 3vh, 36px);
+      font-family: var(--font-display); font-weight: 400;
+      letter-spacing: -0.03em; line-height: 0.95;
+      font-size: clamp(2.5rem, 11vw, 9.5rem);
+      white-space: nowrap;
+      color: var(--ink);
     }
-    .footer-about p { color: var(--muted); max-width: 34ch; margin: 0 0 20px; }
+    .footer-line { color: var(--muted); max-width: 52ch; margin: 0 0 clamp(24px, 4vh, 40px); }
+    .footer-row {
+      display: flex; flex-wrap: wrap; align-items: baseline;
+      justify-content: space-between; gap: clamp(12px, 2vw, 32px);
+    }
     .footer-mail { font-size: var(--step-small); color: var(--muted); }
     .footer-mail a { color: var(--ink); }
-    .footer .small-word {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-family: var(--font-display); letter-spacing: -0.02em;
-      color: var(--ink);
-      font-size: 1.375rem; margin: 0 0 32px; text-decoration: none;
-    }
-    .footer .small-word img { border-radius: 6px; }
-    .footer-menu { display: flex; flex-direction: column; gap: clamp(8px, 1.4vh, 16px); margin-bottom: clamp(40px, 7vh, 72px); }
+    .footer-menu { display: flex; flex-wrap: wrap; gap: 4px clamp(16px, 2.5vw, 28px); }
     .footer-menu a {
       font-family: var(--font-display); letter-spacing: -0.02em;
       font-size: clamp(1.0625rem, 1.5vw, 1.375rem); line-height: 1.15;
@@ -488,10 +489,10 @@
       text-decoration: underline;
       text-underline-offset: 4px; text-decoration-thickness: 2px;
       padding: 12px 0; width: fit-content;
-      transition: transform 0.25s ease, opacity 0.25s ease, color 0.25s ease;
+      transition: color 0.25s ease, opacity 0.25s ease;
     }
     .footer-menu:hover a { opacity: 0.45; }
-    .footer-menu a:hover { opacity: 1; transform: translateX(12px); color: var(--accent); }
+    .footer-menu a:hover { opacity: 1; color: var(--accent); }
     .footer-legal {
       display: flex; gap: clamp(16px, 3vw, 28px); flex-wrap: wrap;
       font-size: var(--step-small); color: var(--muted);
@@ -767,23 +768,20 @@
   </main>
 
   <footer class="footer">
-    <div class="wrap footer-grid">
-      <div class="footer-about">
-        <a class="small-word" href="#top">
-          <img src="images/icon-128.png" alt="" width="24" height="24">
-          rtf2pdf
-        </a>
-        <p>A free Chrome extension that turns .rtf files into PDFs entirely in your browser.</p>
-        <span class="footer-mail">Questions or feedback:<br><a href="mailto:saiph.forge@gmail.com">saiph.forge@gmail.com</a></span>
+    <div class="wrap">
+      <p class="footer-name reveal">RTF to PDF</p>
+      <p class="footer-line reveal">A free Chrome extension that turns .rtf files into PDFs entirely in your browser.</p>
+      <div class="footer-row">
+        <nav class="footer-menu" aria-label="Footer" data-stagger>
+          <a class="reveal" href="#how">How it works</a>
+          <a class="reveal" href="#features">Features</a>
+          <a class="reveal" href="#faq">FAQ</a>
+          <a class="reveal" href="privacy.html">Privacy</a>
+          <a class="reveal" href="guides/">Guides</a>
+          <a class="reveal" href="https://chromewebstore.google.com/detail/rtf-to-pdf/pobhkhkiocaphogjeglealncldfdcall" data-install="footer">Chrome Web Store</a>
+        </nav>
+        <span class="footer-mail reveal">Questions or feedback: <a href="mailto:saiph.forge@gmail.com">saiph.forge@gmail.com</a></span>
       </div>
-      <nav class="footer-menu" aria-label="Footer" data-stagger>
-        <a class="reveal" href="#how">How it works</a>
-        <a class="reveal" href="#features">Features</a>
-        <a class="reveal" href="#faq">FAQ</a>
-        <a class="reveal" href="privacy.html">Privacy</a>
-        <a class="reveal" href="guides/">Guides</a>
-        <a class="reveal" href="https://chromewebstore.google.com/detail/rtf-to-pdf/pobhkhkiocaphogjeglealncldfdcall" data-install="footer">Chrome Web Store</a>
-      </nav>
     </div>
     <div class="wrap footer-legal">
       <span>© 2026 RTF to PDF, rtf2pdf.app</span>
