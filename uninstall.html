@@ -144,7 +144,18 @@
       border: 2px solid var(--border);
       transition: border-color 0.15s ease, background 0.15s ease;
     }
-    .choice .label { flex: 1; }
+    .choice .label { flex: 1; order: 2; }
+    /* Per-reason icon on the right edge of the card */
+    .choice .choice-icon {
+      order: 3;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      margin-top: 2px;
+      color: var(--muted-foreground);
+      transition: color 0.15s ease;
+    }
+    .choice:has(input:checked) .choice-icon { color: var(--primary); }
     .choice:has(input:checked) {
       border-color: var(--primary);
       background: var(--primary-soft);
@@ -394,32 +405,38 @@
             <input type="radio" name="reason" value="I no longer need RTF conversion" required>
             <span class="dot" aria-hidden="true"></span>
             <span class="label">I no longer need RTF conversion</span>
-          </label>
+          
+            <span class="choice-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg></span></label>
           <label class="choice">
             <input type="radio" name="reason" value="I found a better tool">
             <span class="dot" aria-hidden="true"></span>
             <span class="label">I found a better tool</span>
-          </label>
+          
+            <span class="choice-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg></span></label>
           <label class="choice">
             <input type="radio" name="reason" value="Converted documents didn't look right">
             <span class="dot" aria-hidden="true"></span>
             <span class="label">Converted documents didn't look right</span>
-          </label>
+          
+            <span class="choice-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></span></label>
           <label class="choice">
             <input type="radio" name="reason" value="It was slow or had bugs">
             <span class="dot" aria-hidden="true"></span>
             <span class="label">It was slow or had bugs</span>
-          </label>
+          
+            <span class="choice-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span></label>
           <label class="choice">
             <input type="radio" name="reason" value="Privacy concerns">
             <span class="dot" aria-hidden="true"></span>
             <span class="label">Privacy concerns</span>
-          </label>
+          
+            <span class="choice-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1 1 0 0 1 1.52 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/></svg></span></label>
           <label class="choice">
             <input type="radio" name="reason" value="Other" data-other>
             <span class="dot" aria-hidden="true"></span>
             <span class="label">Other</span>
-          </label>
+          
+            <span class="choice-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></span></label>
           <div class="other-input" id="other-wrap">
             <input type="text" id="other-text" maxlength="300" placeholder="Tell us briefly" aria-label="Other — tell us briefly">
           </div>
