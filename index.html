@@ -176,7 +176,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.02em; line-height: 1.08; text-wrap: balance; }
+    h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.02em; line-height: 1.08; text-wrap: balance; color: var(--ink); }
     p { margin: 0; text-wrap: pretty; }
     a { color: inherit; }
     img { display: block; }
@@ -441,7 +441,7 @@
     .faq-list summary {
       cursor: pointer; list-style: none;
       display: flex; justify-content: space-between; align-items: center; gap: 16px;
-      min-height: 48px; font-weight: 600;
+      min-height: 48px; font-weight: 600; color: var(--ink);
     }
     .faq-list summary::-webkit-details-marker { display: none; }
     .faq-list summary svg { flex: none; color: var(--accent); transition: transform 200ms ease; }
@@ -460,6 +460,7 @@
     .cta { padding: clamp(96px, 18vh, 200px) 0 clamp(72px, 12vh, 140px); }
     .cta p {
       font-size: clamp(1.125rem, 1rem + 0.6vw, 1.375rem);
+      color: var(--ink);
       max-width: 34ch; line-height: 1.5; margin: 0 0 28px;
     }
 
@@ -475,6 +476,7 @@
     .footer .small-word {
       display: inline-flex; align-items: center; gap: 10px;
       font-family: var(--font-display); letter-spacing: -0.02em;
+      color: var(--ink);
       font-size: 1.375rem; margin: 0 0 32px; text-decoration: none;
     }
     .footer .small-word img { border-radius: 6px; }
@@ -482,6 +484,7 @@
     .footer-menu a {
       font-family: var(--font-display); letter-spacing: -0.02em;
       font-size: clamp(1.375rem, 2.3vw, 2.125rem); line-height: 1.15;
+      color: var(--ink);
       text-decoration: none; width: fit-content;
       transition: transform 0.25s ease, opacity 0.25s ease, color 0.25s ease;
     }
@@ -512,7 +515,8 @@
       html.theme-fading *,
       html.theme-fading *::before,
       html.theme-fading *::after {
-        transition: background-color 100ms ease, border-color 100ms ease !important;
+        transition: background-color 150ms ease, border-color 150ms ease,
+          color 150ms ease !important;
         transition-delay: 0ms !important;
       }
     }
@@ -807,7 +811,7 @@
         var root = document.documentElement;
         root.classList.add("theme-fading");
         clearTimeout(applyTheme._fadeTimer);
-        applyTheme._fadeTimer = setTimeout(function () { root.classList.remove("theme-fading"); }, 150);
+        applyTheme._fadeTimer = setTimeout(function () { root.classList.remove("theme-fading"); }, 200);
         root.dataset.theme = t;
         themeBtn.setAttribute("aria-label", t === "dark" ? "Switch to light theme" : "Switch to dark theme");
         try { localStorage.setItem("rtf2pdf-theme", t); } catch (e) {}

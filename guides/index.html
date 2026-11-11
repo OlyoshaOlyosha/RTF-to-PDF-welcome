@@ -165,7 +165,8 @@
       html.theme-fading *,
       html.theme-fading *::before,
       html.theme-fading *::after {
-        transition: background-color 100ms ease, border-color 100ms ease !important;
+        transition: background-color 150ms ease, border-color 150ms ease,
+          color 150ms ease !important;
         transition-delay: 0ms !important;
       }
     }
@@ -184,6 +185,7 @@
       font-family: var(--font-display); font-weight: 400;
       font-size: clamp(1.875rem, 1.4rem + 2vw, 2.75rem);
       letter-spacing: -0.02em; line-height: 1.12;
+      color: var(--ink);
     }
     .lead { margin: 0 0 36px; color: var(--muted); }
 
@@ -201,6 +203,7 @@
       font-family: var(--font-display); font-weight: 400;
       font-size: 1.25rem;
       letter-spacing: -0.02em; line-height: 1.25;
+      color: var(--ink);
     }
     .guide-card:hover h2 { color: var(--accent-link); }
     .guide-card p { margin: 0; color: var(--muted); font-size: 0.9375rem; }
@@ -284,7 +287,7 @@
         var root = document.documentElement;
         root.classList.add("theme-fading");
         clearTimeout(applyTheme._fadeTimer);
-        applyTheme._fadeTimer = setTimeout(function () { root.classList.remove("theme-fading"); }, 150);
+        applyTheme._fadeTimer = setTimeout(function () { root.classList.remove("theme-fading"); }, 200);
         root.dataset.theme = next;
         themeBtn.setAttribute("aria-label", next === "dark" ? "Switch to light theme" : "Switch to dark theme");
         try { localStorage.setItem("rtf2pdf-theme", next); } catch (e) {}
