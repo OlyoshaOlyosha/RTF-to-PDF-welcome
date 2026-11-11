@@ -4,6 +4,7 @@ dist/
 *.log
 
 # Editor / agent tools
+.agents/
 .opencode/
 .serena/
 .taste-skill/
