@@ -16,6 +16,7 @@
 - [How to Convert RTF to PDF Without Uploading It](https://rtf2pdf.app/guides/rtf-to-pdf-offline.html): offline conversion methods compared — browser extension vs Word vs LibreOffice vs online converters
 - [How to Open an RTF File Without Microsoft Word](https://rtf2pdf.app/guides/open-rtf-without-word.html): free options on Windows, Mac, Linux, and mobile
 - [RTF vs DOC vs DOCX vs PDF](https://rtf2pdf.app/guides/rtf-vs-doc-vs-docx-vs-pdf.html): comparison table of the four formats and when to use each
+- [WordPad Removed From Windows 11](https://rtf2pdf.app/guides/wordpad-removed-windows-11.html): what the 24H2 removal means for RTF files and the free ways to open them now
 
 ## Key facts
 

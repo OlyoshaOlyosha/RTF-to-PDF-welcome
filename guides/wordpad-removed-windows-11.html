@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    // Theme before first paint: stored choice wins, else system preference.
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("rtf2pdf-theme"); } catch (e) {}
+      if (t === "light" || t === "dark") {
+        document.documentElement.dataset.theme = t;
+      }
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WordPad Removed From Windows 11 — How to Open RTF Files Now | RTF to PDF</title>
+  <meta name="description" content="Windows 11 24H2 removed WordPad, the default RTF viewer. What happened, whether you can get it back, and the free ways to open RTF files now.">
+  <link rel="canonical" href="https://rtf2pdf.app/guides/wordpad-removed-windows-11.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="RTF to PDF">
+  <meta property="og:title" content="WordPad Removed From Windows 11 — How to Open RTF Files Now">
+  <meta property="og:description" content="WordPad is gone from Windows 11. Free ways to open RTF files now, and why reinstalling it is a bad idea.">
+  <meta property="og:url" content="https://rtf2pdf.app/guides/wordpad-removed-windows-11.html">
+  <meta property="article:published_time" content="2026-11-15">
+  <meta property="og:image" content="https://rtf2pdf.app/images/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="../images/icon-128.png">
+  <!-- Fonts self-hosted (latin subset), no third-party CDN dependency -->
+  <link rel="preload" href="../fonts/archivo-black-400.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK16L10K7N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    // Owner's own visits: open any page once with ?internal=1 to mark this
+    // browser; GA4's "Internal Traffic" data filter excludes traffic_type=internal.
+    (function () {
+      try {
+        if (/[?&]internal=1/.test(location.search) || localStorage.getItem("rtf2pdf-internal") === "1") {
+          localStorage.setItem("rtf2pdf-internal", "1");
+          gtag('set', { traffic_type: 'internal' });
+        }
+      } catch (e) {}
+    })();
+    gtag('config', 'G-FK16L10K7N');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "WordPad Removed From Windows 11 — How to Open RTF Files Now",
+    "description": "Windows 11 24H2 removed WordPad, the default RTF viewer. What happened, whether you can get it back, and the free ways to open RTF files now.",
+    "datePublished": "2026-11-15",
+    "dateModified": "2026-11-15",
+    "author": { "@type": "Organization", "name": "RTF to PDF", "url": "https://rtf2pdf.app/" },
+    "publisher": { "@type": "Organization", "name": "RTF to PDF", "url": "https://rtf2pdf.app/" },
+    "mainEntityOfPage": "https://rtf2pdf.app/guides/wordpad-removed-windows-11.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Why was WordPad removed from Windows 11?", "acceptedAnswer": { "@type": "Answer", "text": "Microsoft removed WordPad in Windows 11 version 24H2 (the 2024 feature update) and in Windows Server 2025. WordPad had not received meaningful updates in years, and Microsoft decided to retire it rather than keep maintaining aging code." } },
+      { "@type": "Question", "name": "Can I reinstall WordPad on Windows 11?", "acceptedAnswer": { "@type": "Answer", "text": "No. There is no supported way to reinstall WordPad on current Windows, and it is not in the Microsoft Store. Websites offering a WordPad download for Windows 11 are unofficial repackaged files and a common malware vector — do not install them." } },
+      { "@type": "Question", "name": "What replaced WordPad for opening RTF files?", "acceptedAnswer": { "@type": "Answer", "text": "No single app replaced it. For RTF the closest free equivalent is LibreOffice Writer; Word for the web and Google Docs also open RTF in the browser. Notepad can show the raw text but not the formatting." } },
+      { "@type": "Question", "name": "Are my old .rtf files lost after the WordPad removal?", "acceptedAnswer": { "@type": "Answer", "text": "No. The files themselves are unchanged and still valid — only the built-in app that opened them is gone. Any RTF-capable app (LibreOffice, Word, Google Docs) opens the exact same files as before." } },
+      { "@type": "Question", "name": "Does Windows 10 still have WordPad?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. WordPad is still present on Windows 10 and older; the removal applies to Windows 11 version 24H2 and Windows Server 2025 and later." } }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ===== Self-hosted webfonts (latin) ===== */
+    @font-face {
+      font-family: "Archivo Black";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("../fonts/archivo-black-400.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Libre Franklin";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("../fonts/libre-franklin-400.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Libre Franklin";
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url("../fonts/libre-franklin-600.woff2") format("woff2");
+    }
+
+    /* Tokens, same system as the rest of the site */
+    :root {
+      --bg: #F1F1EE;
+      --surface: #FAFAF7;
+      --ink: #1D1C1A;
+      --muted: #6D6A64;
+      --border: #D9D6CE;
+      --accent: #DC2626;
+      --accent-link: #B91C1C;
+      --font-display: "Archivo Black", "Arial Black", "Libre Franklin", sans-serif;
+      --font-text: "Libre Franklin", -apple-system, "Segoe UI", Roboto, sans-serif;
+      --frame: clamp(16px, 2.5vw, 40px);
+    }
+    [data-theme="dark"] {
+      --bg: #131316;
+      --surface: #1D1F23;
+      --ink: #F1F2F4;
+      --muted: #9BA1A9;
+      --border: #2E3138;
+      --accent-link: #F87171;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #131316;
+        --surface: #1D1F23;
+        --ink: #F1F2F4;
+        --muted: #9BA1A9;
+        --border: #2E3138;
+        --accent-link: #F87171;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scrollbar-gutter: stable; }
+    ::selection { background: rgb(220 38 38 / 0.25); }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: var(--font-text);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+    a { color: var(--accent-link); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    .page-head {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 20px var(--frame) 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .home-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-display); font-weight: 400; letter-spacing: -0.02em;
+      font-size: 1.125rem; color: var(--ink); text-decoration: none;
+      min-height: 44px;
+    }
+    .home-link img { border-radius: 7px; }
+    .home-link:hover span { text-decoration: underline; text-underline-offset: 4px; }
+    .theme-toggle {
+      background: none; border: 0; cursor: pointer;
+      width: 44px; height: 44px; flex: none;
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--muted); position: relative;
+    }
+    .theme-toggle:hover { color: var(--ink); }
+    .theme-toggle svg { position: absolute; transition: opacity 0.3s ease, transform 0.3s ease; }
+    .theme-toggle .icon-sun { opacity: 0; transform: rotate(90deg); }
+    [data-theme="dark"] .theme-toggle .icon-sun { opacity: 1; transform: none; }
+    [data-theme="dark"] .theme-toggle .icon-moon { opacity: 0; transform: rotate(-90deg); }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]):not([data-theme="dark"]) .theme-toggle .icon-sun { opacity: 1; transform: none; }
+      :root:not([data-theme="light"]):not([data-theme="dark"]) .theme-toggle .icon-moon { opacity: 0; transform: rotate(-90deg); }
+    }
+    /* Theme switch fade: colors ease as one unit only while the switch is
+       in flight (html.theme-fading is set by the script below); hover and
+       everything outside the switch stay instant. */
+    @media (prefers-reduced-motion: no-preference) {
+      html.theme-fading *,
+      html.theme-fading *::before,
+      html.theme-fading *::after {
+        transition: background-color 150ms ease, border-color 150ms ease,
+          color 150ms ease !important;
+        transition-delay: 0ms !important;
+      }
+    }
+
+    main { flex: 1; }
+    .article {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 40px var(--frame) 24px;
+    }
+    .crumb { font-size: 0.875rem; color: var(--muted); }
+    .crumb a { color: var(--muted); }
+    .crumb a:hover { color: var(--accent-link); }
+    h1 {
+      margin: 12px 0 10px;
+      font-family: var(--font-display); font-weight: 400;
+      font-size: clamp(1.875rem, 1.4rem + 2vw, 2.75rem);
+      letter-spacing: -0.02em; line-height: 1.12;
+      text-wrap: balance;
+      color: var(--ink);
+    }
+    .byline { margin: 0 0 36px; font-size: 0.9375rem; color: var(--muted); }
+    h2 {
+      margin: 44px 0 14px;
+      font-family: var(--font-display); font-weight: 400;
+      font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+      letter-spacing: -0.02em; line-height: 1.2;
+      color: var(--ink);
+    }
+    p { margin: 0 0 16px; }
+    ul, ol { margin: 0 0 16px; padding-left: 24px; }
+    li { margin-bottom: 8px; }
+    code {
+      font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+      font-size: 0.875em;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1px 6px;
+    }
+    /* App chooser cards: icon + name + when to pick it */
+    .app-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 24px 0 8px;
+    }
+    @media (max-width: 860px) { .app-cards { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px) { .app-cards { grid-template-columns: 1fr; } }
+    .app-card {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 16px;
+      background: var(--surface);
+      border-radius: 1rem;
+      color: inherit;
+      text-decoration: none;
+    }
+    a.app-card:hover strong { color: var(--accent-link); }
+    .app-card .app-tag {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .app-card .app-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-link);
+    }
+    .app-card strong { font-size: 0.9375rem; color: var(--ink); }
+    .app-card p { margin: 0; font-size: 0.8125rem; line-height: 1.5; color: var(--muted); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0 24px;
+      font-size: 0.9375rem;
+      line-height: 1.5;
+    }
+    .table-hint { display: none; color: var(--muted); font-size: 0.8125rem; margin: 8px 0 0; }
+    /* Wide comparison tables scroll horizontally on narrow screens */
+    @media (max-width: 640px) {
+      table { display: block; overflow-x: auto; }
+      .table-hint { display: block; }
+    }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+    th { font-weight: 600; border-bottom-width: 2px; }
+
+    .cta-box {
+      margin: 40px 0;
+      padding: 24px;
+      background: var(--surface);
+      border-radius: 1rem;
+    }
+    .cta-box p { margin: 0 0 16px; font-weight: 600; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 48px;
+      padding: 12px 24px;
+      font: inherit; font-size: 1rem; font-weight: 600;
+      color: #fff; background: var(--accent);
+      border: 0; border-radius: 0.75rem;
+      text-decoration: none;
+      transition: background 0.15s ease;
+    }
+    .btn:hover { background: #B91C1C; text-decoration: none; }
+    @media (prefers-color-scheme: dark) {
+      .btn:hover { background: #EF4444; }
+    }
+
+    .faq h2 { margin-top: 48px; }
+    .faq details { margin-bottom: 4px; }
+    .faq summary {
+      padding: 14px 0;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      min-height: 44px;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary svg { flex: none; transition: transform 0.2s ease; }
+    .faq details[open] summary svg { transform: rotate(180deg); }
+    .faq details p { margin: 0 0 16px; color: var(--muted); }
+
+    .next {
+      margin: 40px 0 0;
+      font-size: 0.9375rem;
+      color: var(--muted);
+    }
+    .next a { font-weight: 600; }
+    footer.site-foot {
+      padding: 32px var(--frame) 40px;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+    footer.site-foot a { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header class="page-head">
+    <a class="home-link" href="/">
+      <img src="../images/icon-128.png" alt="" width="28" height="28">
+      <span>RTF to PDF</span>
+    </a>
+    <button class="theme-toggle" type="button" aria-label="Switch to dark theme">
+      <svg class="icon-moon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      <svg class="icon-sun" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+    </button>
+  </header>
+
+  <main>
+    <article class="article">
+      <p class="crumb"><a href="/">Home</a> / <a href="/guides/">Guides</a></p>
+      <h1>WordPad Removed From Windows 11 — How to Open RTF Files Now</h1>
+      <p class="byline">November 15, 2026 · 3 min read</p>
+
+      <p>If you updated Windows and your <code>.rtf</code> files suddenly stopped opening, nothing is broken on your side. Microsoft removed WordPad — the little word processor that came free with Windows and used RTF as its native format — from Windows 11 in the 24H2 update. Here is what happened and what to do instead.</p>
+
+      <h2>What happened to WordPad</h2>
+      <p>WordPad was removed from <strong>all editions of Windows starting with Windows 11 version 24H2</strong> (and Windows Server 2025). Microsoft had deprecated it in 2023, and the 24H2 update is where it actually disappeared. The stated reason is simple housekeeping: WordPad had not received meaningful feature updates in years, and Microsoft chose to retire it rather than keep maintaining aging code.</p>
+      <p>Two things are worth knowing right away:</p>
+      <ul>
+        <li><strong>Your files are fine.</strong> Only the app is gone. Every <code>.rtf</code> file you have is unchanged and will open in any RTF-capable program exactly as before.</li>
+        <li><strong>There is no supported way to get WordPad back.</strong> It is not in the Microsoft Store, and Microsoft does not offer an official reinstall.</li>
+      </ul>
+
+      <h2>How to open RTF files on Windows 11 now</h2>
+      <div class="app-cards">
+        <div class="app-card">
+          <span class="app-tag">Closest free replacement</span>
+          <span class="app-head"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><strong>LibreOffice Writer</strong></span>
+          <p>Free, opens and edits RTF, exports to PDF. The standard WordPad successor.</p>
+        </div>
+        <div class="app-card">
+          <span class="app-tag">No install</span>
+          <span class="app-head"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg><strong>Word Online</strong></span>
+          <p>Free in the browser with a Microsoft account. Fine for everyday documents.</p>
+        </div>
+        <div class="app-card">
+          <span class="app-tag">For sharing</span>
+          <span class="app-head"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="M7 10l5 5 5-5"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg><strong>RTF to PDF extension</strong></span>
+          <p>Just need to read or send the file? Convert it to PDF in two clicks, on your device.</p>
+        </div>
+      </div>
+      <ul>
+        <li><strong>LibreOffice Writer</strong> — free and open source; opens, edits, and exports RTF to PDF. The closest thing to WordPad, and the standard choice.</li>
+        <li><strong>Word Online</strong> — free with a Microsoft account in the browser; handles everyday RTF documents fine.</li>
+        <li><strong>Google Docs</strong> — upload the file to Google Drive and open it; editing from any device.</li>
+        <li><strong>Notepad</strong> — technically opens RTF, but you will see raw markup codes mixed with the text, not the formatted document. Only useful in an emergency.</li>
+      </ul>
+
+      <h2>Can you download WordPad again?</h2>
+      <p>Only from unofficial websites — and that is exactly what you should not do. There are many "download WordPad for Windows 11" pages, and none of them can offer the real thing: they distribute old, repackaged files, which makes them a well-known malware vector. Nothing on those sites is signed or updated by Microsoft. If a page promises to bring WordPad back, close it and pick one of the replacements above instead.</p>
+
+      <h2>What about Windows 10 and older PCs?</h2>
+      <p>WordPad is still there on Windows 10 and earlier. If you have an older PC at home or in the office, its RTF files will keep opening as always. The removal applies to Windows 11 24H2 and Windows Server 2025 onward.</p>
+
+      <h2>Quick comparison</h2>
+      <table>
+        <thead>
+          <tr><th scope="col">Option</th><th scope="col">Price</th><th scope="col">Edits RTF</th><th scope="col">Best for</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>LibreOffice Writer</td><td>Free</td><td>Yes</td><td>The WordPad replacement, any desktop system</td></tr>
+          <tr><td>Word Online</td><td>Free</td><td>Yes</td><td>Microsoft account holders, no install</td></tr>
+          <tr><td>Google Docs</td><td>Free</td><td>Yes</td><td>Quick view and edit from any device</td></tr>
+          <tr><td>Notepad</td><td>Free</td><td>No</td><td>Emergency peek at the raw text</td></tr>
+        </tbody>
+      </table>
+      <p class="table-hint" aria-hidden="true">Swipe sideways to see the whole table</p>
+
+      <h2>If you only need to read or share the file</h2>
+      <p>Most of the time an RTF file is not something you want to edit — it is something someone sent you. In that case converting it to PDF is simpler than installing anything: the free <a href="https://chromewebstore.google.com/detail/rtf-to-pdf/pobhkhkiocaphogjeglealncldfdcall" target="_blank" rel="noopener">RTF to PDF extension for Chrome</a> turns the file into a PDF on your device, formatting intact, nothing uploaded. PDFs open everywhere — including on the phones of the people you send them to.</p>
+
+      <div class="cta-box">
+        <p>Turn that RTF into a PDF in two clicks — right in the browser</p>
+        <a class="btn" href="https://chromewebstore.google.com/detail/rtf-to-pdf/pobhkhkiocaphogjeglealncldfdcall" target="_blank" rel="noopener">Get RTF to PDF for Chrome — free</a>
+      </div>
+
+      <section class="faq">
+        <h2>Frequently asked questions</h2>
+        <details>
+          <summary>Why was WordPad removed from Windows 11?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p>Microsoft removed WordPad in Windows 11 version 24H2 (the 2024 feature update) and in Windows Server 2025. WordPad had not received meaningful updates in years, and Microsoft decided to retire it rather than keep maintaining aging code.</p>
+        </details>
+        <details>
+          <summary>Can I reinstall WordPad on Windows 11?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p>No. There is no supported way to reinstall WordPad on current Windows, and it is not in the Microsoft Store. Websites offering a WordPad download for Windows 11 are unofficial repackaged files and a common malware vector — do not install them.</p>
+        </details>
+        <details>
+          <summary>What replaced WordPad for opening RTF files?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p>No single app replaced it. For RTF the closest free equivalent is LibreOffice Writer; Word for the web and Google Docs also open RTF in the browser. Notepad can show the raw text but not the formatting.</p>
+        </details>
+        <details>
+          <summary>Are my old .rtf files lost after the WordPad removal?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p>No. The files themselves are unchanged and still valid — only the built-in app that opened them is gone. Any RTF-capable app (LibreOffice, Word, Google Docs) opens the exact same files as before.</p>
+        </details>
+        <details>
+          <summary>Does Windows 10 still have WordPad?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p>Yes. WordPad is still present on Windows 10 and older; the removal applies to Windows 11 version 24H2 and Windows Server 2025 and later.</p>
+        </details>
+      </section>
+
+      <p class="next">Next: <a href="open-rtf-without-word.html">Open an RTF file without Microsoft Word</a> · <a href="what-is-rtf.html">What is an RTF file?</a></p>
+    </article>
+  </main>
+
+  <footer class="site-foot">
+    <a href="/">rtf2pdf.app</a> · <a href="../privacy.html">Privacy policy</a>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+      // Same theme behavior as the landing: stored choice wins, else system
+      // preference; colors ease only while a switch is in flight.
+      var themeBtn = document.querySelector(".theme-toggle");
+      function currentTheme() {
+        var t = document.documentElement.dataset.theme;
+        if (t === "light" || t === "dark") return t;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      function applyTheme(next) {
+        var root = document.documentElement;
+        root.classList.add("theme-fading");
+        clearTimeout(applyTheme._fadeTimer);
+        applyTheme._fadeTimer = setTimeout(function () { root.classList.remove("theme-fading"); }, 200);
+        root.dataset.theme = next;
+        themeBtn.setAttribute("aria-label", next === "dark" ? "Switch to light theme" : "Switch to dark theme");
+        try { localStorage.setItem("rtf2pdf-theme", next); } catch (e) {}
+        if (typeof gtag === "function") gtag("event", "theme_toggle", { to: next });
+      }
+      themeBtn.setAttribute("aria-label", currentTheme() === "dark" ? "Switch to light theme" : "Switch to dark theme");
+      themeBtn.addEventListener("click", function () {
+        applyTheme(currentTheme() === "dark" ? "light" : "dark");
+      });
+    })();
+  </script>
+</body>
+</html>
