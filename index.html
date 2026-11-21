@@ -3,16 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <script>
-    // Old extension versions open "/" with ?pinned=/?id= after install:
-    // hand them over to the onboarding page before anything renders.
-    (function () {
-      try {
-        var p = new URLSearchParams(location.search);
-        if (p.has("id") || p.has("pinned")) {
-          location.replace("/welcome.html" + location.search + location.hash);
-        }
-      } catch (e) { /* stay on the landing page */ }
-    })();
     // Theme before first paint: stored choice wins, else system preference.
     (function () {
       var t = null;
